@@ -1,14 +1,12 @@
-.column{
+.column {
   position: relative;
   padding: 0.8rem;
-  border: 1px solid $cl-border;
+  border: var(--bs-border-width) solid var(--bs-table-border-color);
   overflow: auto;
   border-radius: $border-radius;
-  &__header{
-    font-size: 1.4rem;
+
+  &__header {
+    font-size: 1.6rem;
     font-weight: 500;
-    // position: sticky;
-    // top: 0;
-    // background-color: #fff;
   }
 }
