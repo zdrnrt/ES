@@ -156,7 +156,9 @@ function updateMap(data, selectedCluster, selectedFormat, selectedDriver) {
   highlightLayer.addTo(map);
 }
 
-const csvUrl = './public/images/map_start.csv';
+// const csvUrl = './public/images/map_start.csv';
+// https://github.com/Kujavia/ES/blob/master/public/images/map_start.csv
+const csvUrl = '   https://raw.githubusercontent.com/Kujavia/ES/master/public/images/map_start.csv';
 loadData(csvUrl, function (data) {
   data = data.filter(store => store['Название ТТ']);
   const clusters = [...new Set(data.map(store => store.Кластер))];
