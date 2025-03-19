@@ -1,0 +1,77 @@
+.norming_containerTop{
+    //display: flex;
+    //flex-direction: row;
+    //margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#norming_containerBottom-wrapper{
+    display: none;
+}
+.norming_containerBottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.chartContainerNormLeft{
+    margin: 1%;
+    padding: 1%;
+    width: 80%;
+    //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для каждого блока */
+}
+
+// .asaid_chartNorming{
+//     margin: 1%;
+//     padding: 2%; 
+//     display: flex;
+//     flex-direction: column;
+// }
+#updateChartNormButton{
+    width: 20rem;
+    margin: 1%;
+    margin-left: 80%;
+
+}
+#potentialSales, #normingQuantityStores{
+    color: $cl-purple;
+    font-size: 60px;
+    text-shadow: 
+        1px 1px 0 rgba(255, 255, 255, 0.7), /* Светлый эффект сверху */
+        -1px -1px 0 rgba(0, 0, 0, 0.5); /* Темный эффект снизу */
+}
+
+.asaid_chartNorming {
+    display: flex; /* Используем Flexbox для равномерного распределения блоков */
+    flex-direction: column;
+    justify-content: space-between; /* Равномерное распределение пространства между блоками */
+    align-items: stretch; /* Растягиваем блоки по высоте */
+    gap: 1rem; /* Расстояние между блоками */
+    padding: 1rem; /* Внутренний отступ */
+    //border-radius: 8px; /* Скругление углов */
+    //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для красивого эффекта */
+}
+
+.blocks_Quantity {
+    display: flex; /* Включение Flexbox */
+    justify-content: center; /* Выравнивание по горизонтали */
+    align-items: center; /* Выравнивание по вертикали */
+    flex: 1; /* Равномерное распределение ширины */
+    background-color: #ffffff; /* Фон каждого блока */
+    padding: 1rem; /* Внутренний отступ */
+    border-radius: 8px; /* Скругление углов */
+    //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для каждого блока */
+    text-align: center; /* Выравнивание текста по центру */
+    flex-direction: column;
+}
+
+.blocks_Quantity p {
+    margin: 0; /* Убираем отступы у параграфов */
+    font-size: 18px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    color: #333; /* Цвет текста */
+}
+#salesChart{
+    width: 70%;
+    height: 500px;
+}

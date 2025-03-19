@@ -1,0 +1,31 @@
+.map_wrapper{
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 5%;
+    border: 1px $cl-purple-light solid;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+// #map { height: 800px; width: 70%;}
+// .filter-controls { margin-bottom: 10px; }
+// .toggle-heatmap { margin-top: 10px; }
+
+$map-height: 600px;
+$map-width: 80%;
+$filter-controls-margin: 10px;
+$toggle-heatmap-margin: 10px;
+
+#map {
+    height: $map-height;
+    //width: $map-width;
+    border-radius: 15px;
+}
+
+.filter-controls {
+    margin-bottom: $filter-controls-margin;
+}
+
+.toggle-heatmap {
+    margin-top: $toggle-heatmap-margin;
+}

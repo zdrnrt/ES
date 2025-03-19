@@ -1,0 +1,16 @@
+.loading{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-color: rgba($cl-grey, 0.8);
+  color: $cl-purple-light;
+  transition: $transition-time;
+  .spinner-border{
+    width: 80px;
+    height: 80px;
+  }
+}

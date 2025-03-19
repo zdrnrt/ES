@@ -1,0 +1,76 @@
+
+/* Основные стили для контейнера */
+.regular_assort_container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ccc; /* Бордер только у контейнера */
+    //padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для карточек */
+.card-regular_assort {
+    flex: 1;
+    margin: 0 10px;
+    background-color: #fff;
+    border: none; /* Убираем бордер у карточек */
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+/* Стили для заголовков блоков */
+.block_title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Стили для выпадающих списков и текстовых полей */
+.form-select, .form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+#regular_assort_method{
+    height: 32px;
+}
+#regular_assort_script{
+    width: 80%;
+    height: 35px;
+}
+
+#regular_assort_script::placeholder {
+    color: #C4C5D7; /* Цвет текста плейсхолдера */
+    opacity: 1; /* Убираем прозрачность (по умолчанию может быть меньше 1) */
+    font-size: 12px;
+}
+
+/* Для браузеров, которые используют префиксы */
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #C4C5D7;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #C4C5D7;
+}
+.regular_assort_buttons {
+    padding-top: 7%;
+}
+
+// .modalOptimizRA{
+//     display: flex;
+//     justify-content: space-between;
+// }
+// .first,.tw {
+//     width: 1000px;
+//     border: 1px red solid;
+// }
+// .modal-dialog{
+//     width: 1000px;
+// }

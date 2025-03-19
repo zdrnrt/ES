@@ -1,0 +1,52 @@
+// стили из figma
+$main-font: 'Inter', sans-serif;
+
+$cl-main: #000;
+$cl-additon: #27262B;
+$cl-purple: #474BAB;
+$cl-purple-light: #CACCF7;
+$cl-grey-super-light: #FAFAFA;
+$cl-grey-purple: #F1F2FF;
+$cl-grey-light: #E9E9E9;
+$cl-grey: #EAEAF0;
+$cl-border: #EBEBEB;
+$cl-table-border: #E7E9EC;
+$page-content-header-color:#2C2D31;
+$nav-item-active: #EAEAF0;
+$frame_color2: #EAEAF0;
+
+$icon-link-gap:               .375rem;
+$icon-link-underline-offset:  .25em;
+$icon-link-icon-size:         1em;
+$icon-link-icon-transition:   .2s ease-in-out transform;
+$icon-link-icon-transform:    translate3d(.25em, 0, 0);
+$border-radius: 0.8rem;
+$border-radius-table: 0.4rem;
+$transition-time: 0.2s;
+
+:root{
+  --cl-purple: $cl-purple;
+  --bs-border-radius: 0.8rem;
+  --bs-border-color: #EAEAF0;
+}
+
+//здесь переменные
+//$main-font: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+//$main-font: 'Roboto', sans-serif;
+// $main-font:  'Montserrat', sans-serif;
+// $main-font: 'PT Root UI', sans-serif;
+// $main-font: 'Poppins', sans-serif;
+//$secondary-font: "Sen", sans-serif;
+
+$primary-color: #00008B;
+$accent-color: #FF8C00;
+$second-color:#333;
+$frame_color: rgb(163, 210, 242);
+$button_preview_color:#CACCF7;
+$white: #fff;
+$search-hover-color: rgba(236, 94, 68, 0.723);
+$background-color-dark: linear-gradient(135deg, rgb(0, 0, 0), #1b1b26, #16213e);
+$hover-button: rgb(167, 204, 215);
+$focus-button: rgb(167, 204, 215);
+$hover-button2:rgba(9, 99, 39, 0.495);
+$headerTable-color:rgba(35, 65, 187, 0.495);

@@ -1,0 +1,302 @@
+<div class="page__content page-content">
+  <header class="page-content__header">
+    <p>Кластеризация</p>
+  </header>
+  <div class="clustering_container d-flex flex-column h-100">
+    <!-- Верхний блок с двумя колонками -->
+    <div class="row flex-grow-1 border border-secondary-light  rounded-3 ml-0 mr-0 mb-3">
+      <!-- Левая колонка -->
+      <div class="col-6 d-flex">
+        <div class="column p-4 d-flex flex-column gap-3 w-100 border-0">
+          <!-- <header class="column__header">Выбор алгоритма кластеризации</header> -->
+          <p class="card-title block_title mb-2 fs-4">Выбор алгоритма кластеризации</p>
+  
+          <div class="form-group row d-flex justify-content-between align-items-center w-100">
+            <div class="col-auto">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="clasteringVariants" value="manual_stratification" onchange="formParameterValue(this);" />
+                  Ручная стратификация
+                </label>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-group row d-flex justify-content-between align-items-center w-100">
+            <div class="col-auto">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="clasteringVariants" value="kmeans" onchange="formParameterValue(this);" checked />
+                  K-means
+                </label>
+              </div>
+            </div>
+            <div class="col-auto">
+              <input type="text" class="form-control form-control--value" name="clasteringVariantsValue" value="4" />
+            </div>
+          </div>
+  
+          <div class="form-group row d-flex justify-content-between align-items-center w-100">
+            <div class="col-auto">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="clasteringVariants" value="dbscan" onchange="formParameterValue(this);" />
+                  DBSCAN
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Правая колонка -->
+      <div class="col-6 d-flex">
+        <div class="column p-4 d-flex flex-column gap-3 w-100 border-0">
+          <!-- <header class="column__header">Страты магазинов</header> -->
+          <p class="card-title block_title mb-2 fs-4">Страты магазинов</p>
+  
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="clusteringType" />
+              Тип магазина
+            </label>
+          </div>
+  
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="clasteringSquare" />
+              Площадь магазина
+            </label>
+          </div>
+  
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="clasteringTools" />
+              Оборудование
+            </label>
+          </div>
+
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="clasteringTools" />
+              Трафик
+            </label>
+          </div>
+  
+  
+          <div class="form-check">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" name="clasteringCompetitors" />
+              Сила конкурента
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Блок с кнопками в правом нижнем углу -->
+    <div class="d-flex justify-content-end mt-auto">
+
+      <button class="btn btn-primary me-2" onclick="buttonToggleLoading(this); setTimeout(() => buttonToggleLoading(this), 2000)">
+        Автоподбор
+      </button>
+      <button type="button" class="btn btn-primary" onclick="buttonToggleLoading(this); setTimeout(() => buttonToggleLoading(this), 2000)">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Сформировать кластеры
+      </button>
+    </div>
+  </div>
+  
+
+    <div class="border border-secondary-light  rounded-3 p-3 mb-3 mt-5">
+      <p class="card-title block_title mb-2 fs-4">Показатели качества кластеров</p>
+      <div class="d-flex">
+        <div class="col-6">
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Оценивает отношение дисперсии между кластерами к дисперсии внутри кластеров. Чем выше значение, тем лучше">Variance Ratio Criterion</span>
+            <input type="text" class="form-control" aria-label="Пример размера поля ввода" aria-describedby="inputGroup-sizing-sm" value="0.5">
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-sm" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Оценивает среднее отношение внутрикластерного расстояния к межкластерному расстоянию. Чем ниже значение, тем лучше">Davies-Bouldin Index</span>
+            <input type="text" class="form-control" aria-label="Пример размера поля ввода" aria-describedby="inputGroup-sizing-sm" value="2">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="col-12">
+        <div class="d-flex justify-content-end align-items-center gap-2 mb-2">
+          <select class="form-select p-1" aria-label="Пример выбора по умолчанию">
+            <option selected>ось X</option>
+            <option value="1">Продажи</option>
+          </select>
+          <select class="form-select p-1" aria-label="Пример выбора по умолчанию">
+            <option selected>ось Y</option>
+            <option value="1">Продажи</option>
+            <option value="2">Фейсинги</option>
+            <option value="3">SKU</option>
+          </select>
+           <button class="btn btn-outline-primary">Обновить</button>
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-color-primary"
+          >
+            <i class="fa fa-filter"></i>
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-color-primary"
+          >
+            <i class="fa fa-sliders-h"></i>
+          </button>
+        </div>
+        <canvas id="clusteringChart" style="max-height: 300px"></canvas>
+      </div>
+
+      <div class="col-12 p-0">
+        <div class="d-flex justify-content-end align-items-center gap-2 mb-2">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-color-primary"
+          >
+            <i class="fa fa-file-upload"></i>
+          </button>
+          <button type="button" class="btn btn-primary">
+            <!-- <i class="fa fa-save"></i> -->
+          </button>
+        </div>
+        <div
+          class="table border-bottom"
+          style="padding-top: 9px; height: 300px"
+        >
+          <table class="table__table">
+            <thead>
+              <tr>
+                <th>Территория</th>
+                <th>Населенный пункт</th>
+                <th>ФИО РГМ</th>
+                <th>Торг&nbsp;пл. М<sup>2</sup></th>
+                <th>Формат</th>
+                <th>Адрес</th>
+                <th>Кластер</th>
+                <th>Признак</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Иванов Иван Иванович</td>
+                <td>870</td>
+                <td>А1</td>
+                <td>Ириновский пр. 24 корп C</td>
+                <td>1</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Иванов Иван Иванович</td>
+                <td>850</td>
+                <td>А1</td>
+                <td>СПб , Марата ул. 25</td>
+                <td>1</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Иванов Иван Иванович</td>
+                <td>910</td>
+                <td>А1</td>
+                <td>Спб, Шпалерная, 49</td>
+                <td>2</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Иванов Иван Иванович</td>
+                <td>830</td>
+                <td>А1</td>
+                <td>Санкт-Петербург, Левый пер 1, стр1</td>
+                <td>1</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Цветков Павел Николаевич</td>
+                <td>801</td>
+                <td>А1</td>
+                <td>Санкт –Петербург, Невский пр, 25</td>
+                <td>1</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Цветков Павел Николаевич</td>
+                <td>1325</td>
+                <td>С3</td>
+                <td>Санкт-Петербург, ул. К.Заслонова, д.19 лит.Б</td>
+                <td>2</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Дорожная Галина Петровна</td>
+                <td>1599</td>
+                <td>С3</td>
+                <td>пр. М.Тореза ул., д. 105</td>
+                <td>4</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Васильев Денис Сергеевич</td>
+                <td>1601</td>
+                <td>С3</td>
+                <td>Звенигородская улица, 36</td>
+                <td>4</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Цветков Павел Николаевич</td>
+                <td>1001</td>
+                <td>С3</td>
+                <td>г. Санкт-Петербург, Красное село, пр Ленина, 15</td>
+                <td>3</td>
+                <td>auto</td>
+              </tr>
+              <tr>
+                <td>Северо-Запад</td>
+                <td>Санкт-Петербург</td>
+                <td>Цветков Павел Николаевич</td>
+                <td>1598</td>
+                <td>С3</td>
+                <td>СПб, г.Колпино, Звездная ул., д. 86, лит. Б</td>
+                <td>4</td>
+                <td>auto</td>
+              </tr>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <button class="btn btn-outline-primary me-2" onclick="buttonToggleLoading(this); setTimeout(() => buttonToggleLoading(this), 2000)">
+          Сохранить
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

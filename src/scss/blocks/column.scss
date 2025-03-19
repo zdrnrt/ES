@@ -1,0 +1,14 @@
+.column{
+  position: relative;
+  padding: 0.8rem;
+  border: 1px solid $cl-border;
+  overflow: auto;
+  border-radius: $border-radius;
+  &__header{
+    font-size: 1.4rem;
+    font-weight: 500;
+    // position: sticky;
+    // top: 0;
+    // background-color: #fff;
+  }
+}

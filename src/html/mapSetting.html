@@ -1,0 +1,325 @@
+<div class="page__content page-content data-page">
+  <header class="page-content__header">
+    <h1>Карта процессов: Настройка</h1>
+  </header>
+  <div>
+    <div class="d-flex justify-content-start gap-4 mb-3">
+      <button type="button" class="d-block btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTimetable">
+        Расписание проверки
+      </button>
+      <button type="button" class="d-block btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalMapSetting">
+        Настройка процесса
+      </button>
+      <button type="button" class="d-block btn btn-primary" data-bs-toggle="modal"
+        data-bs-target="#modalMapSettingProcessCreate">
+        Создание процесса
+      </button>
+    </div>
+    <div class="d-flex justify-content-start gap-4 mb-5">
+      <select class="form-select w-50">
+        <option value="">Процесс согласования изменений в процессах управления ассортиментом, планограммами, целевым
+          стоком</option>
+        <option value="">Процесс контроля корректности входных данных</option>
+        <option value="">Процесс расчета нормативных показателей</option>
+        <option value="">Процесс контроля, анализ причин отклонений</option>
+        <option value="">Процесс прогнозирования спроса </option>
+        <option value="">Процесс планирования товарных потоков </option>
+        <option value="">Процесс заказа товара поставщикам на РЦ</option>
+        <option value="">Процесс заказа товара на ТТ</option>
+        <option value="">Процесс формирования оптимальных условий доставки </option>
+        <option value="">Процесс управления сервисом поставщиков</option>
+        <option value="">Процесс управления ценой</option>
+        <option value="">Процесс операционной логистики</option>
+        <option value="">Процессы операционные ТТ</option>
+      </select>
+      <button class="btn btn-primary">Выгрузить</button>
+    </div>
+    <div class="table">
+      <table class="table__table">
+        <thead>
+          <tr>
+            <th>Главный процесс</th>
+            <th>Процесс</th>
+            <th>Входные данные</th>
+            <th>Исполнитель</th>
+            <th>Инструмент</th>
+            <th>Результат</th>
+            <th>KPI</th>
+            <th>География</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Процесс прогнозирования спроса</td>
+            <td>Процесс прогнозирования регулярного спроса</td>
+            <td>Чистый ряд данных. Коэффициенты</td>
+            <td>Отдел прогнозирования</td>
+            <td>Excel</td>
+            <td>Регулярный прогноз продаж</td>
+            <td>Точность прогноза</td>
+            <td>Вся сеть</td>
+          </tr>
+          <tr>
+            <td>Процесс прогнозирования спроса</td>
+            <td>Процесс прогнозирования регулярного спроса</td>
+            <td>Чистый ряд данных. Коэффициенты</td>
+            <td>Отдел прогнозирования</td>
+            <td>Excel</td>
+            <td>Регулярный прогноз продаж</td>
+            <td>Точность прогноза</td>
+            <td>Вся сеть</td>
+          </tr>
+          <tr>
+            <td>Процесс прогнозирования спроса</td>
+            <td>Процесс прогнозирования регулярного спроса</td>
+            <td>Чистый ряд данных. Коэффициенты</td>
+            <td>Отдел прогнозирования</td>
+            <td>Excel</td>
+            <td>Регулярный прогноз продаж</td>
+            <td>Точность прогноза</td>
+            <td>Вся сеть</td>
+          </tr>
+          <tr>
+            <td>Процесс прогнозирования спроса</td>
+            <td>Процесс прогнозирования регулярного спроса</td>
+            <td>Чистый ряд данных. Коэффициенты</td>
+            <td>Отдел прогнозирования</td>
+            <td>Excel</td>
+            <td>Регулярный прогноз продаж</td>
+            <td>Точность прогноза</td>
+            <td>Вся сеть</td>
+          </tr>
+          <tr>
+            <td>Процесс прогнозирования спроса</td>
+            <td>Процесс прогнозирования регулярного спроса</td>
+            <td>Чистый ряд данных. Коэффициенты</td>
+            <td>Отдел прогнозирования</td>
+            <td>Excel</td>
+            <td>Регулярный прогноз продаж</td>
+            <td>Точность прогноза</td>
+            <td>Вся сеть</td>
+          </tr>
+          <tr>
+            <td>Процесс прогнозирования спроса</td>
+            <td>Процесс прогнозирования регулярного спроса</td>
+            <td>Чистый ряд данных. Коэффициенты</td>
+            <td>Отдел прогнозирования</td>
+            <td>Excel</td>
+            <td>Регулярный прогноз продаж</td>
+            <td>Точность прогноза</td>
+            <td>Вся сеть</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal fade" id="modalTimetable" tabindex="-1" aria-labelledby="moadlTimetableLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="moadlTimetableLabel">Настройки расписания</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form id="" onsubmit="dataFilter(event);" class="form">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="dataInterval" class="form-label">Интервал</label>
+                <input type="text" class="form-control" id="dataInterval">
+              </div>
+              <div class="mb-3">
+                <label for="dataRepeat" class="form-label">Дни повторения</label>
+                <input type="text" class="form-control" id="dataRepeat">
+              </div>
+              <div class="mb-3">
+                <label for="dataTime" class="form-label">Время</label>
+                <input type="text" class="form-control" id="dataTime">
+              </div>
+              <div class="mb-3">
+                <label for="dataBegin" class="form-label">Начало</label>
+                <input type="text" class="form-control" id="dataBegin">
+              </div>
+              <div class="mb-3 row">
+                <div class="col-3"><label for="dataEnd" class="form-label">Окончание</label></div>
+                <div class="col-9">
+                  <select name="dataEnd" id="dataEnd" class="form-select mb-2">
+                    <option value="never">Никогда</option>
+                    <option value="after">Спустя</option>
+                    <option value="date">Дата</option>
+                  </select>
+                  <div>
+                    <input type="number" class="form-control" id="dataEndValue">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Применить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalMapSetting" tabindex="-1" aria-labelledby="modalMapSettingLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalMapSettingLabel">Настройка процесса</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <select name="" id="" class="d-block w-100 form-select mb-3">
+              <option value="">Процесс согласования изменений в процессах управления ассортиментом, планограммами,
+                целевым стоком</option>
+              <option value="">Процесс контроля корректности входных данных</option>
+              <option value="">Процесс расчета нормативных показателей</option>
+              <option value="">Процесс контроля, анализ причин отклонений</option>
+              <option value="">Процесс прогнозирования спроса </option>
+              <option value="">Процесс планирования товарных потоков </option>
+              <option value="">Процесс заказа товара поставщикам на РЦ</option>
+              <option value="">Процесс заказа товара на ТТ</option>
+              <option value="">Процесс формирования оптимальных условий доставки </option>
+              <option value="">Процесс управления сервисом поставщиков</option>
+              <option value="">Процесс управления ценой</option>
+              <option value="">Процесс операционной логистики</option>
+              <option value="">Процессы операционные ТТ</option>
+            </select>
+            <div class="mb-3">
+              <button class="w-50 btn btn-primary">Входные данные</button>
+            </div>
+            <div class="mb-3">
+              <button class="w-50 btn btn-primary">Выходные данные</button>
+            </div>
+            <div class="mb-3">
+              <button class="w-50 btn btn-primary">Исполнитель</button>
+            </div>
+            <div class="mb-3">
+              <button class="w-50 btn btn-primary">KPI</button>
+            </div>
+            <div class="mb-3">
+              <button class="w-50 btn btn-primary">География</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="d-flex justify-content-end align-items-center gap-4 mb-3">
+              <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                data-bs-target="#modalTimetable">
+                Загрузить DNL
+              </button>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTimetable">
+                Скачать EX
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalMapSettingProcessCreate" tabindex="-1"
+      aria-labelledby="modalMapSettingProcessCreateLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalMapSettingProcessCreateLabel">Создание нового процесса </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="">
+            <div class="modal-body">
+              <div class="row mb-3">
+                <div class="col-3"><label for="" class="form-label">Главный процесс</label></div>
+                <div class="col-9"><input type="text" class="form-control" id="" required></div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-3"><label for="" class="form-label">Подпроцесс</label></div>
+                <div class="col-9"><input type="text" class="form-control" id="" required></div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-3"><label for="" class="form-label">География процесса</label></div>
+                <div class="col-9">
+                  <select name="" id="" class="form-select mb-2">
+                    <option value="">Вся сеть</option>
+                    <option value="">Регион А</option>
+                    <option value="">Регион В</option>
+                    <option value="">Регион С</option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-3"><label for="" class="form-label">Входные данные</label></div>
+                <div class="col-9">
+                  <select name="" id="" class="form-select mb-2">
+                    <option value="">Остатки ТТ, шт/руб</option>
+                    <option value="">Остатки РЦ, шт/руб</option>
+                    <option value="">Остатки ТТ, шт/руб</option>
+                    <option value="">Остатки РЦ, шт/руб</option>
+                    <option value="">Продажи, шт/руб</option>
+                    <option value="">История заказов и приходов РЦ</option>
+                    <option value="">История заказов и приходов ТТ</option>
+                    <option value="">Прочие движения ТТ, шт/руб</option>
+                    <option value="">Прочие движения РЦ, шт/руб</option>
+                    <option value="">Чековые данные</option>
+                    <option value="">История промо</option>
+                    <option value="">Страховой запас</option>
+                    <option value="">МПО</option>
+                    <option value="">Прогноз продаж</option>
+                    <option value="">Товарный классификатор</option>
+                    <option value="">Логистические данные по товарам</option>
+                    <option value="">Справочник ТТ/каналов сбыта</option>
+                    <option value="">Справочник складов</option>
+                    <option value="">Справочник поставщиков</option>
+                    <option value="">Активная матрица товаров</option>
+                    <option value="">Виды остатков</option>
+                    <option value="">Виды продаж</option>
+                    <option value="">Прочие свойства товара</option>
+                    <option value="">Ставка НДС</option>
+                    <option value="">Себестоимость</option>
+                    <option value="">Цена продажи </option>
+                    <option value="">Товар-аналог</option>
+                    <option value="">Виды движений</option>
+                    <option value="">Планограмма </option>
+                  </select>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-3"><label for="" class="form-label">Исполнитель</label></div>
+                <div class="col-9">
+                  <select name="" id="" class="form-select mb-2">
+                    <option value="">Исполнитель 1</option>
+                    <option value="">Исполнитель 2</option>
+                    <option value="">Исполнитель 3</option>
+                    <option value="">Исполнитель 4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-3"><label for="" class="form-label">Результат</label></div>
+                <div class="col-9"><input type="text" class="form-control" id="" required></div>
+              </div>
+              <div class="mb-3 row">
+                <div class="col-3"><label for="" class="form-label">KPI</label></div>
+                <div class="col-9">
+                  <select name="" id="" class="form-select mb-2">
+                    <option>% от нормы</option>
+                    <option>товарный запас</option>
+                    <option>продажи</option>
+                    <option>списания</option>
+                    <option>представленность</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer text-end">
+              <button type="button" class="btn btn-primary" type="submit">
+                Применить
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

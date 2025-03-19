@@ -1,0 +1,35 @@
+:root{
+  --bs-table-border-color: $cl-table-border;
+}
+.table{
+  width: 100%;
+  display: block;
+  overflow: scroll;
+  &__table{
+    // background-color: var(--bs-border-color);
+    border-radius: 0.4rem;
+    color: $cl-additon;
+    &--fixed-head{
+      thead{
+        position: fixed;
+        top: 0;
+      }
+    }
+    &--fixed-left{
+      thead tr th:first-child,
+      tbody tr td:first-child {
+        position: sticky;
+        left: 0;
+      }
+    }
+    th{
+      background-color: $cl-grey-purple;
+      font-weight: 500;
+    }
+    tbody td, 
+    thead th{
+      padding: 0.4rem 1.2rem;
+      border: var(--bs-border-width) solid var(--bs-table-border-color);
+    }
+  }
+}

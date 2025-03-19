@@ -1,0 +1,92 @@
+ // базовый сброс настроек
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline-color: $cl-purple;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+h1{
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+ul, ol,li {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+table {
+    min-width: 100%;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button{
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+ // базовый сброс настроекКОНЕЦ
+ 
+:root{
+    font-size: 10px;
+    line-height: 1.2;
+}
+body {
+    font-family: $main-font;
+    font-size: 1.2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page{
+    height: 100vh;
+}
+
+.content{
+    // overflow: scroll;
+}
+
+.danger{
+    color: var(--bs-danger);
+}
+.border-r{
+    border-radius: $border-radius;
+}
+
+#check-mark_button{ /*галочка для всех кнопок*/
+    display: none;
+    color: green;
+    font-size: 15px;
+    margin-left: 5px;
+ }
+
+ .form-check-input {
+    border-color: $cl-purple !important; /* Темный цвет обводки */
+    box-shadow: none !important; /* Убираем эффект свечения при фокусе */
+  }
+  
+  .form-check-input:checked {
+    background-color: $cl-purple !important; /* Темный цвет при выборе */
+    border-color: #343a40 !important;
+  }
+  
+//   .form-check-input:focus {
+//     box-shadow: 0 0 0 0.2rem $accent-color!important; /* Подсветка при фокусе */
+//   }

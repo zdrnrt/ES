@@ -1,0 +1,353 @@
+<div class="page__content page-content">
+  <header class="page-content__header">
+    <p>Драйверы</p>
+  </header>
+  <div class="draiver_container">
+    <div class="row">
+      <div class="col-sm-12 mb-3 mb-sm-0 border border-0">
+        <div class="card-body border border-0">
+          <!-- <h5 class="card-title">Настройки драйверов</h5> -->
+          <p class="card-title block_title mb-2 fs-4">Настройки драйверов</p>
+          <p class="card-text">
+            Выберите подходящие сценарии и детализацию для драйверов
+          </p>
+
+          <div class="d-flex align-items-center mb-1">
+            <label for="draiver_region" class="col-4 col-form-label text-start"
+              >Регион</label
+            >
+            <div class="col-8">
+              <select
+                id="draiver_region"
+                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
+              >
+                <option value="" selected>Выберите регион</option>
+                <option value="draiver_region1" disabled>Центральный</option>
+                <option value="draiver_region2">Уральский ФО</option>
+                <option value="draiver_region3" disabled>
+                  Северо-западный
+                </option>
+                <option value="draiver_region4" disabled>
+                  Дальневосточный
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-1">
+            <label for="draiver_area" class="col-4 col-form-label text-start"
+              >Формат</label
+            >
+            <div class="col-8">
+              <select
+                id="draiver_area"
+                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
+              >
+                <option value="" selected>Выберите формат</option>
+                <option value="draiver_area1" disabled>Все</option>
+                <option value="draiver_area2">Челябинская</option>
+                <option value="draiver_area3" disabled>Свердловская</option>
+                <option value="draiver_area4" disabled>Тюменская</option>
+                <option value="draiver_area5" disabled>Курганская</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-1">
+            <label for="draiver_area" class="col-4 col-form-label text-start"
+              >Тип сети</label
+            >
+            <div class="col-8">
+              <select
+                id="draiver_area"
+                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
+              >
+                <option value="" selected>Выберите тип сети</option>
+                <option value="" selected>Выберите тип сети</option>
+                <option value="draiver_area1" disabled>Все</option>
+                <option value="draiver_area2">Национальная</option>
+                <option value="draiver_area3" disabled>Локальная</option>
+                <option value="draiver_area4" disabled>Региональная</option>
+                <option value="draiver_area5" disabled>не определено</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-1">
+            <label for="draiver_name" class="col-4 col-form-label text-start"
+              >Название магазина</label
+            >
+            <div class="col-8">
+              <select
+                id="draiver_name"
+                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
+              >
+                <option value="">Выберите название сети</option>
+                <option value="draiver_name1" selected>Все</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center mb-1">
+            <label for="draiver_area" class="col-4 col-form-label text-start"
+              >Драйвер</label
+            >
+            <div class="col-8">
+              <select
+                id="draiver_types"
+                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
+              >
+                <option value="draiver_area1" disabled>Не выбрано</option>
+                <option value="Все" selected>Все</option>
+                <option value="Ассортимент">Ассортимент</option>
+                <option value="Цена">Цена</option>
+                <option value="Оборудование">Оборудование</option>
+                <option value="Выкладка на ХП">Выкладка на ХП</option>
+                <option value="Выкладка на ТП">Выкладка на ТП</option>
+                <option value="ДМП">ДМП</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- <a href="#" class="btn btn-primary">Настроить</a> -->
+          <div class="row justify-content-end mt-3">
+            <div class="col-3">
+              <button
+                id="updateChartDriverButton"
+                class="btn btn-outline-primary"
+                 data-bs-toggle="modal" data-bs-target="#modalDriverScenario"
+              >
+                Сценарии драйверов
+              </button>
+            </div>
+            <div class="col-3">
+              <button
+                id="updateChartDriverButton"
+                class="btn btn-primary"
+                onclick="updateChartDriver()"
+              >
+                Отобразить график
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-sm-1"></div> -->
+    </div>
+  </div>
+
+  <div id="draiver_containerBottom-wrapper">
+    <div
+      id="draiver_containerBottom"
+      class="draiver_containerBottom block_containerES"
+    >
+      <div id="chartContainer" class="chartContainerNormLeft block_containerES">
+        <canvas id="salesChartDraiver" width="900" height="400"></canvas>
+      </div>
+
+      <div class="asaid_chartdraiver">
+        <div class="blocks_Quantity block_containerES">
+          Прирост по драйверам всего
+          <p id="potentialSalesDraiver"></p>
+        </div>
+        <div class="blocks_Quantity block_containerES">
+          Количество точек в оценке
+          <p id="draiverQuantityStoresDraiver"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="modalDriverScenario"></div> -->
+<!-- Модальное окно -->
+<!-- Модальное окно -->
+<div class="modal fade modalDriverScenario" id="modalDriverScenario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Сценарии драйверов</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body border border-0 mt-0 ">
+   
+        <div class="modal-body" style="width: 100%;">
+          <div class="card-body">
+              <div class="checkbox-group">
+  
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="flexCheckboxDefaultSpikes" id="modalMethod1" value="method1">
+                    <label class="form-check-label" for="modalMethod1">Ассортимент</label>
+                    <div class="input-group input-group-sm mb-1">
+                      <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                        <option selected>Сценарии</option>
+                        <option value="1">добавление не более 1 SKU</option>
+                        <option value="2">добавление не более 5 SKU</option>
+                        <option value="3">добавление только высокомаржинальных SKU</option>
+                        <option value="3">замена на benchmark</option>
+                        <option value="3">замена низкодоходных SKU</option>
+                      </select>
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                      <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                        <option selected>Применить к уровню:</option>
+                        <option value="1">Регион</option>
+                        <option value="2">Тип сети</option>
+                        <option value="3">Формат</option>
+                        <option value="3">Магазин</option>
+                        <option value="3">Пользовательская группа #1 </option>
+                      </select>
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                      <select class="form-select mb-1 fs-6" aria-label="Пример выбора по умолчанию">
+                        <option selected>Применить к категории:</option>
+                        <option value="1">Алког.продукция</option>
+                        <option value="2">Б/А продукция</option>
+                      </select>
+                    </div>
+                    <div class="input-group input-group-sm mb-1">
+                      <select class="form-select mb-1 fs-6" aria-label="Пример выбора по умолчанию">
+                        <option selected>Применить к типу:</option>
+                        <option value="3">Бутылка</option>
+                        <option value="3">Банка</option>
+                        <option value="3">ПЭТ</option>
+                      </select>
+                    </div>
+                </div>
+      
+      
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="flexCheckboxDefaultSpikes" id="modalMethod1" value="method1">
+                    <label class="form-check-label" for="modalMethod1">Оборудование ХО</label>
+                    <div class="input-group input-group-sm mb-1">
+                      <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                        <option selected>Сценарии</option>
+                        <option value="1">добавление 1 единицы</option>
+                        <option value="2">добавление 2 единиц</option>
+                        <option value="2">добавление только slim ХО</option>
+                      </select>
+                    </div>
+                    <div class="input-group input-group-sm mb-1 fs-6">
+                      <select class="form-select form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                        <option selected>Применить к уровню:</option>
+                        <option value="1">Регион</option>
+                        <option value="2">Тип сети</option>
+                        <option value="3">Формат</option>
+                        <option value="3">Магазин</option>
+                      </select>
+                    </div>
+                </div>
+      
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="flexCheckboxDefaultSpikes" id="modalMethod1" value="method1">
+                  <label class="form-check-label" for="modalMethod1">Цена</label>
+                  <div class="input-group input-group-sm mb-1">
+                    <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                      <option selected>Сценарии</option>
+                      <option value="1">снижение не более, чем на 5%</option>
+                      <option value="2">снижение не более, чем на 10%</option>
+                      <option value="2">снижение цены только на безалког. SKU</option>
+                    </select>
+                  </div>
+                  <div class="input-group input-group-sm mb-0 fs-6">
+                    <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                      <option selected>Применить к категории:</option>
+                      <option value="1">Алко</option>
+                      <option value="2">Безалко</option>
+                      <option value="3">Бутылка</option>
+                      <option value="3">Банка</option>
+                    </select>
+                  </div>
+                  <div class="input-group input-group-sm mb-1 fs-6">
+                    <select class="form-select mb-1 fs-6" aria-label="Пример выбора по умолчанию">
+                      <option selected>Применить к уровню:</option>
+                      <option value="1">Регион</option>
+                      <option value="2">Тип сети</option>
+                      <option value="3">Формат</option>
+                      <option value="3">Магазин</option>
+                    </select>
+                  </div>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="flexCheckboxDefaultSpikes" id="modalMethod1" value="method1">
+                <label class="form-check-label" for="modalMethod1">Выкладка на ХП</label>
+                <div class="input-group input-group-sm mb-1">
+                  <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                    <option selected>Сценарии</option>
+                    <option value="1">приоритет выкладки #1 (пользовательский список)</option>
+                    <option value="1">приоритет выкладки #1 (пользовательский список)</option>
+                  </select>
+                </div>
+                <div class="input-group input-group-sm mb-1 fs-6">
+                  <select class="form-select mb-1 fs-6" aria-label="Пример выбора по умолчанию">
+                    <option selected>Применить к уровню:</option>
+                    <option value="1">Регион</option>
+                    <option value="2">Тип сети</option>
+                    <option value="3">Формат</option>
+                    <option value="3">Магазин</option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="flexCheckboxDefaultSpikes" id="modalMethod1" value="method1">
+              <label class="form-check-label" for="modalMethod1">Выкладка на ТП</label>
+              <div class="input-group input-group-sm mb-1">
+                <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                  <option selected>Сценарии</option>
+                  <option value="1">приоритет выкладки #1 (пользовательский список)</option>
+                  <option value="1">приоритет выкладки #1 (пользовательский список)</option>
+                </select>
+              </div>
+              <div class="input-group input-group-sm mb-1 fs-6">
+                <select class="form-select mb-1 fs-6" aria-label="Пример выбора по умолчанию">
+                  <option selected>Применить к уровню:</option>
+                  <option value="1">Регион</option>
+                  <option value="2">Тип сети</option>
+                  <option value="3">Формат</option>
+                  <option value="3">Магазин</option>
+                </select>
+              </div>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="flexCheckboxDefaultSpikes" id="modalMethod1" value="method1">
+            <label class="form-check-label" for="modalMethod1">ДМП</label>
+            <div class="input-group input-group-sm mb-1">
+              <select class="form-select mb-0 fs-6" aria-label="Пример выбора по умолчанию">
+                <option selected>Сценарии</option>
+                <option value="1">добавить 1 упаковку</option>
+                <option value="1">добавить 2 упаковки</option>
+                <option value="1">добавить 3 упаковки</option>
+              </select>
+            </div>
+            <div class="input-group input-group-sm mb-1 fs-6">
+              <select class="form-select mb-1 fs-6" aria-label="Пример выбора по умолчанию">
+                <option selected>Применить к уровню:</option>
+                <option value="1">Регион</option>
+                <option value="2">Тип сети</option>
+                <option value="3">Формат</option>
+                <option value="3">Магазин</option>
+              </select>
+            </div>
+        </div>
+      </div>
+      
+              <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-primary">Сохранить</button>
+              </div> -->
+          </div>
+      </div>
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Сохранить изменения</button>
+      </div>
+    </div>
+  </div>
+</div>
