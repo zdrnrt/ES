@@ -1,4 +1,3 @@
-
 // /* Основные стили для контейнера */
 // .regular_assort_container {
 //     display: flex;
@@ -78,79 +77,103 @@
 
 
 .parameters_container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Карточки будут занимать минимум 300px, максимум — равную часть пространства */
-    gap: 20px; /* Одинаковое расстояние по горизонтали и вертикали */
-    //padding: 20px; /* Отступы внутри контейнера */
-  }
-  
-  .card {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #EAEAF0; /* Граница карточки */
-    border-radius: 8px; /* Закругленные углы */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень */
-    background-color: #fff; /* Фон карточки */
-    position: relative;
-  }
-  
-  .card-body {
-    flex: 1; /* Растягиваем тело карточки на всю высоту */
-    padding: 20px; /* Внутренние отступы */
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .block_title {
-    font-size: 1.25rem; /* Размер заголовка */
-    font-weight: bold; /* Жирный шрифт */
-    margin-bottom: 15px; /* Отступ снизу */
-  }
-  
-  .form-check {
-    margin-bottom: 10px; /* Отступ между элементами формы */
-  }
-  
-  .input-group {
-    margin-bottom: 10px; /* Отступ между группами ввода */
-  }
-  
-  .container_parameters_buttonSave {
-    grid-column: 1 / -1; /* Кнопка "Сохранить" занимает всю ширину */
-    text-align: end; /* Выравнивание текста по центру */
-    margin-top: 20px; /* Отступ сверху */
-  }
-  
-  
-  #check-mark_button {
-    //margin-left: 10px; /* Отступ слева от галочки */
-    color: green; /* Цвет галочки */
-    display: none; /* Скрываем по умолчанию */
-  }
-  
-  .icon-link {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Расстояние между текстом и иконкой */
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #007bff; /* Цвет ссылки */
-    margin-top: auto; /* Перемещаем ссылку вниз */
-    align-self: flex-end; /* Выравниваем ссылку по правому краю */
-  }
-  
-  .icon-link:hover {
-    text-decoration: underline; /* Подчеркивание при наведении */
-  }
-  
-  .icon-link svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  #inputGroup-sizing-sm {
-    width: 79%;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* Карточки будут занимать минимум 300px, максимум — равную часть пространства */
+  gap: 20px;
+  /* Одинаковое расстояние по горизонтали и вертикали */
+  //padding: 20px; /* Отступы внутри контейнера */
+}
 
-  .input-group{
-    width: 80%;
-  }
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #EAEAF0;
+  /* Граница карточки */
+  border-radius: 8px;
+  /* Закругленные углы */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Тень */
+  background-color: #fff;
+  /* Фон карточки */
+  position: relative;
+}
+
+.card-body {
+  flex: 1;
+  /* Растягиваем тело карточки на всю высоту */
+  padding: 20px !important;
+  /* Внутренние отступы */
+  display: flex;
+  flex-direction: column;
+}
+
+.block_title {
+  font-size: 1.25rem;
+  /* Размер заголовка */
+  font-weight: bold;
+  /* Жирный шрифт */
+  margin-bottom: 15px;
+  /* Отступ снизу */
+}
+
+.form-check {
+  margin-bottom: 10px;
+  /* Отступ между элементами формы */
+}
+
+.input-group {
+  margin-bottom: 10px;
+  /* Отступ между группами ввода */
+}
+
+// .container_parameters_buttonSave {
+//   grid-column: 1 / -1;
+//   /* Кнопка "Сохранить" занимает всю ширину */
+//   text-align: end;
+//   /* Выравнивание текста по центру */
+//   //margin-top: 20px;
+//   /* Отступ сверху */
+// }
+
+
+#check-mark_button {
+  //margin-left: 10px; /* Отступ слева от галочки */
+  color: green;
+  /* Цвет галочки */
+  display: none;
+  /* Скрываем по умолчанию */
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Расстояние между текстом и иконкой */
+  text-decoration: none;
+  /* Убираем подчеркивание */
+  color: #007bff;
+  /* Цвет ссылки */
+  margin-top: auto;
+  /* Перемещаем ссылку вниз */
+  align-self: flex-end;
+  /* Выравниваем ссылку по правому краю */
+}
+
+.icon-link:hover {
+  text-decoration: underline;
+  /* Подчеркивание при наведении */
+}
+
+.icon-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+#inputGroup-sizing-sm {
+  width: 79%;
+}
+
+.input-group {
+  width: 80%;
+}
