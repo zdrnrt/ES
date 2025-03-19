@@ -1,32 +1,32 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css");
 
-@import "./vars.scss";
-@import "./template.scss";
-@import "./blocks/aside.scss";
-@import "./blocks/content.scss";
-@import "./blocks/table.scss";
-@import "./blocks/button.scss";
-@import "./blocks/form.scss";
-@import "./blocks/modal.scss";
-@import "./blocks/column.scss";
-@import "./blocks/map.scss";
-@import "./blocks/data.scss";
-@import "./blocks/norming.scss";
-@import "./blocks/driver.scss";
-@import "./blocks/forecastParameters.scss";
-@import "./blocks/forecast.scss";
-@import "./blocks/modal_methodsRegAss.scss";
-@import "./blocks/modal_optRegAss.scss";
-@import "./blocks/loading.scss";
-@import "./blocks/clustering.scss";
-@import "./blocks/priority.scss";
-@import "./blocks/control.scss";
+@use "./vars.scss";
+@use "./template.scss";
+@use "./blocks/aside.scss";
+@use "./blocks/content.scss";
+@use "./blocks/table.scss";
+@use "./blocks/button.scss";
+@use "./blocks/form.scss";
+@use "./blocks/modal.scss";
+@use "./blocks/column.scss";
+@use "./blocks/map.scss";
+@use "./blocks/data.scss";
+@use "./blocks/norming.scss";
+@use "./blocks/driver.scss";
+@use "./blocks/forecastParameters.scss";
+@use "./blocks/forecast.scss";
+@use "./blocks/modal_methodsRegAss.scss";
+@use "./blocks/modal_optRegAss.scss";
+@use "./blocks/loading.scss";
+@use "./blocks/clustering.scss";
+@use "./blocks/priority.scss";
+@use "./blocks/control.scss";
 
 
 
-@import "./modules/data.scss";
+@use "./modules/data.scss";
 
-// @import url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css");
+// @use url("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css");
 
 
 ody {
