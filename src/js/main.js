@@ -2,8 +2,6 @@ import 'jquery';
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../scss/style.scss'
-import { DBSCAN } from 'density-clustering';
-import { mlKMeans } from 'density-clustering';
 import Chart from 'chart.js/auto';
 
 import './blocks/header'
