@@ -10,14 +10,126 @@ window.dataOpen = function () {
         .then(html => {
             // Вставляем загруженный HTML в #content
             document.getElementById('content').innerHTML = html;
-
-            // После вставки HTML вызываем скрипты, которые зависят от этого контента
+            dataInfoSpeedDraw();
             initializeScriptsAfterContentLoad();
         })
         .catch(error => {
             console.error('Возникла проблема с операцией выборки:', error);
         });
 }
+
+
+window.dataInfoSpeedDraw = function () {
+    // Конфигурации для каждого графика
+    const chartsConfig = [
+        {
+            id: "dataInfoOlap",
+            value: 65,
+            activeColor: "#474BAB",
+            inactiveColor: "#cdd5e1",
+            label: "ЕГАИС"
+        },
+        {
+            id: "dataInfoAuto",
+            value: 78,
+            activeColor: "#474BAB",
+            inactiveColor: "#cdd5e1",
+            label: "BigData"
+        },
+        {
+            id: "dataInfoForecast",
+            value: 42,
+            activeColor: "#474BAB",
+            inactiveColor: "#cdd5e1",
+            label: "Мониторинги"
+        },
+        {
+            id: "dataInfoDistr",
+            value: 91,
+            activeColor: "#474BAB",
+            inactiveColor: "#cdd5e1",
+            label: "Дистрибьюторы"
+        },
+        {
+            id: "dataInfoTraf",
+            value: 55,
+            activeColor: "#474BAB",
+            inactiveColor: "#cdd5e1",
+            label: "Трафик"
+        }
+    ];
+
+    // Создаем каждый график с индивидуальными настройками
+    chartsConfig.forEach(configItem => {
+        const ctx = document.getElementById(configItem.id).getContext("2d");
+
+        // Создаем элемент для отображения процента
+        const percentageElement = document.createElement('div');
+        percentageElement.className = 'text-center fw-bold mt-2';
+        percentageElement.style.fontSize = '1.5rem';
+        percentageElement.style.color = configItem.activeColor;
+        percentageElement.textContent = `${configItem.value}%`;
+
+        // Добавляем элемент под canvas
+        ctx.canvas.insertAdjacentElement('afterend', percentageElement);
+
+        new Chart(ctx, {
+            type: "doughnut",
+            data: {
+                labels: ["Active", "Inactive"],
+                datasets: [{
+                    data: [configItem.value, 100 - configItem.value],
+                    backgroundColor: [configItem.activeColor, configItem.inactiveColor],
+                    borderColor: [configItem.activeColor, configItem.inactiveColor],
+                    borderWidth: 1,
+                    cutout: "75%",
+                    circumference: 180,
+                    rotation: -90
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false },
+                    //  текст в центр графика 
+                    doughnutCenterText: {
+                        text: `${configItem.value}%`,
+                        color: configItem.activeColor,
+                        fontStyle: 'bold'
+                    }
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            },
+            // Плагин для отображения текста в центре
+            // plugins: [{
+            //     id: 'doughnutCenterText',
+            //     beforeDraw(chart) {
+            //         if (chart.config.options.plugins.doughnutCenterText) {
+            //             const { text, color, fontStyle } = chart.config.options.plugins.doughnutCenterText;
+            //             const { ctx } = chart;
+            //             const { width, height } = chart;
+
+            //             ctx.restore();
+            //             ctx.font = `bold ${Math.min(width, height) / 4}px Arial`;
+            //             ctx.textBaseline = 'middle';
+            //             ctx.fillStyle = color;
+
+            //             const textX = Math.round((width - ctx.measureText(text).width) / 2);
+            //             const textY = height / 2;
+
+            //             ctx.fillText(text, textX, textY);
+            //             ctx.save();
+            //         }
+            //     }
+            // }]
+        });
+    });
+};
+
+
 
 window.initializeScriptsAfterContentLoad = function () {
     // Убедимся, что таблица существует в DOM

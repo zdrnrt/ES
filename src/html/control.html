@@ -1,173 +1,298 @@
-<div class="page__content page-content">
-  <header class="page-content__header">
-    <p>Контроль исполнения</p>
-  </header>
-  <div class="draiver_container">
-    <div class="row">
-      <div class="col-sm-12 mb-3 mb-sm-0 border border-0">
-        <div class="card-body border border-0">
-          <!-- <h5 class="card-title">Настройки драйверов</h5> -->
-          <p class="card-title block_title mb-2 fs-5">Выберите разрез данных</p>
-          <!-- <p class="card-text">
-            Выберите разрез данных
-          </p> -->
-
-          <div class="d-flex align-items-center mb-1">
-            <label for="draiver_region" class="col-4 col-form-label text-start"
-              >Регион</label
-            >
-            <div class="col-8">
-              <select
-                id="draiver_region"
-                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
-              >
-                <option value="" selected>Выберите регион</option>
-                <option value="draiver_region1" disabled>Центральный</option>
-                <option value="draiver_region2">Уральский ФО</option>
-                <option value="draiver_region3" disabled>
-                  Северо-западный
-                </option>
-                <option value="draiver_region4" disabled>
-                  Дальневосточный
-                </option>
-              </select>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center mb-1">
-            <label for="formatSelectNorm" class="col-4 col-form-label text-start"
-              >Формат</label
-            >
-            <div class="col-8">
-              <select
-                id="formatSelectNorm"
-                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
-              >
-              <option value="Все">Все</option>
-              <option value="Конвиниенс">Конвиниенс</option>
-              <option value="Супермаркеты">Супермаркеты</option>
-              <option value="Торговля через прилавок">
-                Торговля через прилавок
-              </option>
-              <option value="Гипермаркеты">Гипермаркеты</option>
-              <option value="Дискаунтеры">Дискаунтеры</option>
-              <option value="Киоски">Киоски</option>
-              <option value="Алкомаркеты">Алкомаркеты</option>
-              <option value="Бирбутики">Бирбутики</option>
-              <option value="Рестораны">Рестораны</option>
-              <option value="Вендинг">Вендинг</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center mb-1">
-            <label for="draiver_area" class="col-4 col-form-label text-start"
-              >Тип сети</label
-            >
-            <div class="col-8">
-              <select
-                id="draiver_area"
-                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
-              >
-                <option value="" selected>Выберите тип сети</option>
-                <option value="draiver_area1" disabled>Все</option>
-                <option value="draiver_area2">Национальная</option>
-                <option value="draiver_area3" disabled>Локальная</option>
-                <option value="draiver_area4" disabled>Региональная</option>
-                <option value="draiver_area5" disabled>не определено</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center mb-1">
-            <label for="draiver_name" class="col-4 col-form-label text-start"
-              >Название магазина</label
-            >
-            <div class="col-8">
-              <select
-                id="draiver_name"
-                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
-              >
-                <option value="">Выберите название сети</option>
-                <option value="draiver_name1" selected>Все</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="d-flex align-items-center mb-1">
-            <label for="draiver_area" class="col-4 col-form-label text-start"
-              >Драйвер</label
-            >
-            <div class="col-8">
-              <select
-                id="draiver_types"
-                class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
-              >
-                <option value="draiver_area1" disabled>Не выбрано</option>
-                <option value="Все" selected>Все</option>
-                <option value="Ассортимент">Ассортимент</option>
-                <option value="Цена">Цена</option>
-                <option value="Оборудование">Оборудование</option>
-                <option value="Выкладка на ХП">Выкладка на ХП</option>
-                <option value="Выкладка на ТП">Выкладка на ТП</option>
-                <option value="ДМП">ДМП</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- <a href="#" class="btn btn-primary">Настроить</a> -->
-          <div class="row justify-content-end mt-3">
-            <!-- <div class="col-3">
-              <button
-                id="updateChartDriverButton"
-                class="btn btn-outline-primary"
-                 data-bs-toggle="modal" data-bs-target="#modalDriverScenario"
-              >
-                Сценарии драйверов
-              </button>
-            </div> -->
-            <div class="col-3">
-              <button
-                id="updateChartDriverButton"
-                class="btn btn-primary"
-                onclick="updateChartControl()"
-              >
-                Обновить график
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class="col-sm-1"></div> -->
+<div class="container-fluid p-4">
+  <!-- Верхний блок -->
+  <div class="card mb-4 border shadow-sm">
+    <div class="card-header bg-light">
+      <h4 class="mb-0">Статистика выполнения о драйверам</h4>
     </div>
-  </div>
-  <div id="control_containerBottom-wrapper">
-    <div
-      id="priority_containerBottom"
-      class="priority_containerBottom block_containerES"
-    >
-    
-      <div id="chartContainer" class="chartContainerPriorityLeft block_containerES">
-        <canvas id="salesChartPriority" width="900" height="400"></canvas>
-      </div>
-  
-      <div class="asaid_chartPriority">
-        <div class="blocks_Quantity block_containerES">
-          Общий процент выполнения по драйверам
-          <p id="potentialSalesPriority"></p>
+    <div class="card-body">
+      <!-- Заголовки категорий -->
+      <div class="row mb-4 g-2">
+        <div class="col">
+          <h5 class="text-center mb-0">Драйверы</h5>
         </div>
-        <div class="blocks_QuantityPriority block_containerES">
-          Количество точек в оценке
-          <p id="controlQuantityStores">4013</p>
+        <div class="col">
+          <h5 class="text-center mb-0">Оборудование</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Ассортимент</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Выкладка</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Цены</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">ДМП</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0"></h5>
+        </div>
+      </div>
+
+      <!-- Графики -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <canvas id="taskСommerceChart" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskOperationChart" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskItemChart" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskMarketingChart" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskForecastChart" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskLogisticChart" class="w-100"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Кол-во поставленных задач по дням за период</small>
+        </div>
+      </div>
+
+      <!-- Процент выполнения -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">75%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">95%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">88%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">91%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">93%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">100%</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Процент выполнения (средний)</small>
+        </div>
+      </div>
+
+      <!-- Невыполненные задачи -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Невыполненных задач на текущую дату</small>
         </div>
       </div>
     </div>
-    <button class ="btn btn-outline-secondary">Отправить в CRM</button>
   </div>
-  
 
+  <!-- Нижний блок -->
+  <div class="card border shadow-sm">
+    <div class="card-header bg-light">
+      <h4 class="mb-0">Статистика выполнения по подразделениям</h4>
+    </div>
+    <div class="card-body">
+      <!-- Заголовки категорий -->
+      <div class="row mb-4 g-2">
+        <div class="col">
+          <h5 class="text-center mb-0">Операции</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Коммерция</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Товародвижение</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Маркетинг</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Прогнозирование</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0">Логистика</h5>
+        </div>
+        <div class="col">
+          <h5 class="text-center mb-0"></h5>
+        </div>
+      </div>
+      <!-- Графики -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <canvas id="taskСommerceChart2" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskOperationChart2" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskItemChart2" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskMarketingChart2" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskForecastChart2" class="w-100"></canvas>
+            </div>
+            <div class="col-md-2">
+              <canvas id="taskLogisticChart2" class="w-100"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Кол-во поставленных задач по дням за период</small>
+        </div>
+      </div>
 
+      <!-- Процент выполнения -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">75%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">95%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">88%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">91%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">93%</div>
+            </div>
+            <div class="col-md-2">
+              <div class="display-4 text-center fw-bold">100%</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Процент выполнения (средний)</small>
+        </div>
+      </div>
+
+      <!-- Невыполненные срочные задачи -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Невыполненных срочных задач на текущую дату</small>
+        </div>
+      </div>
+
+      <!-- Невыполненные среднесрочные задачи -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">2</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">3</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">3</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Невыполненных среднесрочных задач на текущую дату</small>
+        </div>
+      </div>
+
+      <!-- Невыполненные системные задачи -->
+      <div class="row align-items-center g-3 py-3 border-top">
+        <div class="col-md-10">
+          <div class="row g-2">
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">3</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">2</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">3</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">1</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+            <div class="col-md-2">
+              <div class="h2 fw-bold text-center">0</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <small class="text-muted">Невыполненных системных задач на текущую дату</small>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-

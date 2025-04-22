@@ -1,3 +1,23 @@
-.form-control .form-control--value{
+.form-control .form-control--value {
     display: none;
+}
+
+.clustering_bottom {
+    display: none;
+    height: 400px;
+    border: 1px $cl-border solid;
+}
+
+.alertClusteringNotParameters {
+    display: none;
+}
+
+.clustering_strats {
+    display: none;
+}
+
+.clustering_bottom_Strats {
+    display: none;
+    height: 400px;
+    border: 1px $cl-border solid;
 }

@@ -24,6 +24,7 @@ import './modules/report'
 import './modules/modelingResult'
 import './modules/controlChart'
 
+import './modules/clasteringCreate'
 
 
 
@@ -193,3 +194,80 @@ loadData(csvUrl, function (data) {
 
 
 //карта2
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Объект с данными для каждого типа драйвера
+  const driverValues = {
+    'Все': { time: 20, profit: 15000, probability: 0.9, expenses: 10000 },
+    'Ассортимент': { time: 25, profit: 12000, probability: 0.8, expenses: 8000 },
+    'Цена': { time: 15, profit: 18000, probability: 0.85, expenses: 9000 },
+    'Оборудование': { time: 30, profit: 10000, probability: 0.75, expenses: 7000 },
+    'Выкладка на ХП': { time: 20, profit: 15000, probability: 0.9, expenses: 10000 },
+    'Выкладка на ТП': { time: 18, profit: 16000, probability: 0.88, expenses: 9500 },
+    'ДМП': { time: 22, profit: 14000, probability: 0.82, expenses: 8500 }
+  };
+
+  // Функция для расчета итогового значения
+  function calculateTotal(profit, probability, expenses, time) {
+    return (profit * probability) / (expenses * time);
+  }
+
+  // Обработчик события для динамически загружаемого селекта
+  document.addEventListener('change', function (e) {
+    if (e.target && e.target.id === 'draiver_typesPriority') {
+      const selectedValue = e.target.value;
+
+      if (driverValues[selectedValue]) {
+        const { time, profit, probability, expenses } = driverValues[selectedValue];
+
+        // Находим ближайшие поля ввода (если их несколько в таблице)
+        const row = e.target.closest('tr') || document; // ищем строку или весь документ
+        const timeInput = row.querySelector('#parametersDriverPriorityTime');
+        const profitInput = row.querySelector('#parametersDriverPriorityProfit');
+        const probabilityInput = row.querySelector('#parametersDriverPriorityProbability');
+        const expensesInput = row.querySelector('#parametersDriverPriorityExpenses');
+        const totalInput = row.querySelector('#parametersDriverPriorityTotal');
+
+        if (timeInput && profitInput && probabilityInput && expensesInput && totalInput) {
+          timeInput.value = time;
+          profitInput.value = profit;
+          probabilityInput.value = probability;
+          expensesInput.value = expenses;
+
+          const total = calculateTotal(profit, probability, expenses, time);
+          totalInput.value = total.toFixed(6).replace('.', ','); // форматируем с запятой
+        }
+      }
+    }
+  });
+
+  // Обработчик для ручного изменения полей (если нужно пересчитывать при их изменении)
+  document.addEventListener('input', function (e) {
+    const target = e.target;
+    const isRelevantInput = target.id === 'parametersDriverPriorityTime' ||
+      target.id === 'parametersDriverPriorityProfit' ||
+      target.id === 'parametersDriverPriorityProbability' ||
+      target.id === 'parametersDriverPriorityExpenses';
+
+    if (isRelevantInput) {
+      const row = target.closest('tr') || document;
+      const timeInput = row.querySelector('#parametersDriverPriorityTime');
+      const profitInput = row.querySelector('#parametersDriverPriorityProfit');
+      const probabilityInput = row.querySelector('#parametersDriverPriorityProbability');
+      const expensesInput = row.querySelector('#parametersDriverPriorityExpenses');
+      const totalInput = row.querySelector('#parametersDriverPriorityTotal');
+
+      if (timeInput && profitInput && probabilityInput && expensesInput && totalInput) {
+        const time = parseFloat(timeInput.value.replace(',', '.')) || 0;
+        const profit = parseFloat(profitInput.value.replace(',', '.')) || 0;
+        const probability = parseFloat(probabilityInput.value.replace(',', '.')) || 0;
+        const expenses = parseFloat(expensesInput.value.replace(',', '.')) || 0;
+
+        const total = calculateTotal(profit, probability, expenses, time);
+        totalInput.value = total.toFixed(6).replace('.', ',');
+      }
+    }
+  });
+});

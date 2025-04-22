@@ -22,7 +22,7 @@
                   id="draiver_region"
                   class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
                 >
-                  <option value="" selected>Выберите регион</option>
+                  <option value="" selected>Все</option>
                   <option value="draiver_region1" disabled>Центральный</option>
                   <option value="draiver_region2">Уральский ФО</option>
                   <option value="draiver_region3" disabled>
@@ -44,12 +44,16 @@
                   id="draiver_area"
                   class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
                 >
-                  <option value="" selected>Выберите формат</option>
-                  <option value="draiver_area1" disabled>Все</option>
-                  <option value="draiver_area2">Челябинская</option>
-                  <option value="draiver_area3" disabled>Свердловская</option>
-                  <option value="draiver_area4" disabled>Тюменская</option>
-                  <option value="draiver_area5" disabled>Курганская</option>
+                  <option value="" disabled>Все</option>
+                  <option value="Конвиниенс" disabled>Конвиниенс</option>
+                  <option value="Супермаркеты" disabled>Супермаркеты</option>
+                  <option value="Гипермаркеты" disabled>Гипермаркеты</option>
+                  <option value="Дискаунтеры" disabled>Дискаунтеры</option>
+                  <option value="Киоски" disabled>Киоски</option>
+                  <option value="Алкомаркеты" disabled>Алкомаркеты</option>
+                  <option value="Бирбутики" disabled>Бирбутики</option>
+                  <option value="Рестораны" disabled>Рестораны</option>
+                  <option value="Торговля через прилавок" selected>Торговля через прилавок</option>
                 </select>
               </div>
             </div>
@@ -63,9 +67,8 @@
                   id="draiver_area"
                   class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
                 >
-                  <option value="" selected>Выберите тип сети</option>
-                  <option value="" selected>Выберите тип сети</option>
-                  <option value="draiver_area1" disabled>Все</option>
+                  <option value="" selected>Все</option>
+                  <!-- <option value="draiver_area1" disabled>Все</option> -->
                   <option value="draiver_area2">Национальная</option>
                   <option value="draiver_area3" disabled>Локальная</option>
                   <option value="draiver_area4" disabled>Региональная</option>
@@ -91,15 +94,16 @@
 
             <div class="d-flex align-items-center mb-1">
               <label for="draiver_area" class="col-4 col-form-label text-start"
-                >Сотрудник</label
+                >Должность сотрудника</label
               >
               <div class="col-8">
                 <select
                   id="draiver_types"
                   class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
                 >
-                  <option value="draiver_area1" disabled>Не выбрано</option>
-                  <option value="Все" disabled selected>Все</option>
+                  <option value="draiver_area1">Не выбрано</option>
+                  <option value="Все" selected>Торговый представитель</option>
+                  <option value="draiver_area1" disabled>недоступно</option>
                 </select>
               </div>
             </div>
@@ -122,15 +126,15 @@
               >
               <div class="col-8">
                 <select
-                  id="draiver_types"
+                  id="draiver_typesPriority"
                   class="form-select form-select-sm w-100 fs-5 mb-2 p-2"
                 >
                   <option value="draiver_area1" disabled>Не выбрано</option>
-                  <option value="Все" selected>Все</option>
+                  <option value="Все">Все</option>
                   <option value="Ассортимент">Ассортимент</option>
                   <option value="Цена">Цена</option>
                   <option value="Оборудование">Оборудование</option>
-                  <option value="Выкладка на ХП">Выкладка на ХП</option>
+                  <option value="Выкладка на ХП" selected>Выкладка на ХП</option>
                   <option value="Выкладка на ТП">Выкладка на ТП</option>
                   <option value="ДМП">ДМП</option>
                 </select>
@@ -146,6 +150,7 @@
               >Общий приоритет задачи</span
             >
             <input
+            id="parametersDriverPriorityTotal"
               type="text"
               class="form-control"
               aria-label="Пример размера поля ввода"
@@ -164,6 +169,7 @@
               >Время выполнения, мин</span
             >
             <input
+            id = "parametersDriverPriorityTime"
               type="text"
               class="form-control"
               aria-label="Пример размера поля ввода"
@@ -182,6 +188,7 @@
               >Дополнительный доход</span
             >
             <input
+            id = "parametersDriverPriorityProfit"
               type="text"
               class="form-control"
               aria-label="Пример размера поля ввода"
@@ -200,6 +207,7 @@
               >Вероятность исполнения (от 0 до 1)</span
             >
             <input
+             id = "parametersDriverPriorityProbability"
               type="text"
               class="form-control"
               aria-label="Пример размера поля ввода"
@@ -217,6 +225,7 @@
               >Оценка денежных затрат</span
             >
             <input
+            id = "parametersDriverPriorityExpenses"
               type="text"
               class="form-control"
               aria-label="Пример размера поля ввода"

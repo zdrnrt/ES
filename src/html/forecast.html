@@ -68,24 +68,23 @@
             </button>
           </div>
           <label for="regular_assort_script">Сценарий расчета</label>
-          <input
-            id="regular_assort_script"
-            type="text"
-            class="form-control"
-            placeholder="Еще не создано ни одного сценария"
-            aria-describedby="button-addon1"
-          />
+          <select class="form-select regular_assort_script" aria-label="Default select example">
+            <option selected>Выберите сценарий расчета</option>
+            <option value="1">Сценарий1</option>
+            <option value="2">Сценарий2</option>
+            <option value="3">Сценарий3</option>
+          </select>
           <div class="regular_assort_buttons">
             <button
               type="button"
-              class="btn btn-outline-primary outline-primary-project"
+              class="p-2 btn btn-outline-primary"
               style="width: 31%"
             >
               Сохранить сценарий
             </button>
             <button
               type="button"
-              class="btn btn-outline-secondary outline-secondary-project"
+              class="p-2 btn btn-outline-secondary outline-secondary-project"
               style="width: 31%"
               onclick="openModalOptRA()"
             >
@@ -93,7 +92,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary success-project"
+              class="p-2 btn btn-primary success-project"
               style="width: 31%"
               onclick="loadAndFilterData()"
               id="regular_assort__calculateForecastButton"

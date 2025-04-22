@@ -1,44 +1,95 @@
 <div class="page__content page-content data-page">
   <header class="page-content__header">
-    <p>Параметры прогноза</p>
+    <p>Глобальные параметры</p>
   </header>
 
   <div class="parameters_container">
-    <div class="card" style="width: 100%">
+    <!-- старая агрегация -->
+    <!-- <section class="parameters_aggregation-wrapper">
+    <p class="parameters_aggregation-title block_title">Агрегация данных</p>
+    <div class="parameters_aggregation">
+      <label for="parameters_aggregation-time">Агрегат по времени</label>
+      <select id="parameters_aggregation-time" class="form-select">
+        <option value="globalParamTimeNot">Не установлено</option>
+        <option value="globalParamTimeDay">День</option>
+        <option value="globalParamTimeWeek" selected >Неделя</option>
+        <option value="globalParamTimeQuarter">Квартал</option>
+        <option value="globalParamTimeMonth">Месяц</option>
+      </select>
+      <label for="parameters_aggregation-geo">Агрегат по географии</label>
+      <select id="parameters_aggregation-geo" class="form-select">
+        <option value="globalParamGeoNot">Не установлено</option>
+        <option value="globalParamGeoChain" selected>Сеть</option>
+        <option value="globalParamGeoCountry">Страна</option>
+        <option value="globalParamGeoRegion">Регион</option>
+        <option value="globalParamGeoCity">Город</option>
+        <option value="globalParamGeoStore">Магазин</option>
+      </select>
+      <label for="parameters_aggregation-scu">Агрегат по позиции</label>
+      <select id="parameters_aggregation-scu" class="form-select">
+        <option value="globalParamSkuNot">Не установлено</option>
+        <option value="globalParamTypeProduct">Категория</option>
+        <option value="globalParamSku" selected>SKU</option>
+      </select>
+    </div>
+  </section> -->
+
+    <!-- новая агрегация -->
+    <div class="card border rounded-3 shadow-sm" style="width: 100%">
       <div class="card-body" id="parameters_promo-method">
         <h5 class="card-title block_title">Агрегация данных</h5>
-        <div class="parameters_aggregation">
+        <div class="parameters_aggregation mt-3">
           <label for="parameters_aggregation-time">Агрегат по времени</label>
-          <select id="parameters_aggregation-time" class="form-select p-1 fs-6">
-            <option value="globalParamTimeNot">Не установлено</option>
-            <option value="globalParamTimeDay">День</option>
+          <select
+            id="parameters_aggregation-time"
+            class="form-select form-select-sm fs-5"
+          >
+            <option value="globalParamTimeNot" disabled>Не установлено</option>
+            <option value="globalParamTimeDay" disabled>День</option>
             <option value="globalParamTimeWeek" selected>Неделя</option>
-            <option value="globalParamTimeQuarter">Квартал</option>
-            <option value="globalParamTimeMonth">Месяц</option>
+            <option value="globalParamTimeQuarter" disabled>Квартал</option>
+            <option value="globalParamTimeMonth" disabled>Месяц</option>
           </select>
           <label for="parameters_aggregation-geo">Агрегат по географии</label>
-          <select id="parameters_aggregation-geo" class="form-select p-1 fs-6">
+          <select
+            id="parameters_aggregation-geo"
+            class="form-select form-select-sm fs-5"
+          >
             <option value="globalParamGeoNot">Не установлено</option>
             <option value="globalParamGeoChain" selected>Сеть</option>
-            <option value="globalParamGeoCountry">Страна</option>
-            <option value="globalParamGeoRegion">Регион</option>
-            <option value="globalParamGeoCity">Город</option>
-            <option value="globalParamGeoStore">Магазин</option>
+            <option value="globalParamGeoCountry" disabled>Страна</option>
+            <option value="globalParamGeoRegion" disabled>Регион</option>
+            <option value="globalParamGeoCity" disabled>Город</option>
+            <option value="globalParamGeoStore" disabled>Магазин</option>
           </select>
           <label for="parameters_aggregation-scu">Агрегат по позиции</label>
-          <select id="parameters_aggregation-scu" class="form-select p-1 fs-6">
-            <option value="globalParamSkuNot">Не установлено</option>
-            <option value="globalParamTypeProduct">Категория</option>
+          <select
+            id="parameters_aggregation-scu"
+            class="form-select form-select-sm fs-5"
+          >
+            <option value="globalParamSkuNot" disabled>Не установлено</option>
+            <option value="globalParamTypeProduct" disabled>Категория</option>
             <option value="globalParamSku" selected>SKU</option>
           </select>
         </div>
       </div>
     </div>
 
-    <div class="card" style="width: 100%">
+    <!-- <section class="parameters_promo-wrapper">
+    <p class="parameters_promo-title">Очистка от промо</p>
+    <div class="parameters_promo">
+      <label for="parameters_promo-method">Метод очистки</label>
+      <select id="parameters_promo-method" class="form-select">
+        <option value="globalParamPromoNot" selected>Не установлено</option>
+        <option value="globalParamPromoMethodEmptyValue">Пустое значение</option>
+      </select>
+    </div>
+  </section> -->
+
+    <div class="card border rounded-3 shadow-sm" style="width: 100%">
       <div class="card-body" id="parameters_promo-method">
         <h5 class="card-title block_title">Очистка от промо</h5>
-        <div class="form-check">
+        <div class="form-check mt-3">
           <input
             class="form-check-input"
             type="radio"
@@ -63,23 +114,22 @@
           <label
             class="form-check-label"
             for="flexRadioDefaultPromo2"
-            data-bs-container="body"
-            data-bs-toggle="popover"
-            data-bs-placement="right"
-            data-bs-content="Всплывающее окно вверх"
+            data-bs-toggle="tooltip"
+            data-bs-placement="top"
+            data-bs-custom-class="custom-tooltip"
           >
-            Пустое значение
+            Исключение промо продаж
           </label>
         </div>
-        <div class="form-check">
+        <div class="form-check border-top">
           <input
-            class="form-check-input"
+            class="form-check-input mt-4"
             type="radio"
-            name="flexRadioDefaultPromo"
+            name="flexRadioDefaultPromoMarkup"
             id="flexRadioDefaultPromo3"
             value="globalParamPromoUploadedMarkup"
           />
-          <label class="form-check-label" for="flexRadioDefaultPromo3">
+          <label class="form-check-label mt-4" for="flexRadioDefaultPromo3">
             Загруженная разметка
           </label>
         </div>
@@ -87,7 +137,7 @@
           <input
             class="form-check-input"
             type="radio"
-            name="flexRadioDefaultPromo"
+            name="flexRadioDefaultPromoMarkup"
             id="flexRadioDefaultPromo4"
             value="globalParamPromoAutoMarkup"
           />
@@ -98,10 +148,10 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="100-2=98% z коэффициент для стандартного отклонения"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="100-2=98% z коэффициент для стандартного отклонения"
               >Порог промо</span
             >
             <input
@@ -117,10 +167,10 @@
     </div>
 
     <!-- от сезонности новая-->
-    <div class="card" style="width: 100%">
+    <div class="card border rounded-3 shadow-sm" style="width: 100%">
       <div class="card-body" id="parameters_season-method">
         <h5 class="card-title block_title">Очистка от сезонности</h5>
-        <div class="form-check">
+        <div class="form-check mt-3">
           <input
             class="form-check-input"
             type="checkbox"
@@ -130,39 +180,49 @@
           <label class="form-check-label" for="flexCheckDefault">
             Коэффициенты колебания
           </label>
-          <select id="parameters_seasonCoeff" class="form-select">
-            <option value="globalParamGeoNot" selected>По тренду</option>
-            <option value="globalParamGeoChain">По средней</option>
+          <select
+            id="parameters_seasonCoeff"
+            class="form-select form-select-sm fs-6"
+          >
+            <option value="globalParamGeoNot" selected>По средней#2</option>
+            <option value="globalParamGeoChain">
+              Коэффициенты по тренду#1
+            </option>
           </select>
         </div>
 
-        <a class="icon-link icon-link-hover" href="#">
-          Коэффициенты
-          <svg
-            class="bi"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M15.3493 10.2656L13.8533 11.8258C13.6622 12.0251 13.6689 12.3417 13.8682 12.5328C14.0675 12.7239 14.384 12.7172 14.5751 12.5179L16.8311 10.1652C17.0536 9.93309 17.0536 9.56678 16.831 9.33467L14.5751 6.98207C14.384 6.78275 14.0675 6.77611 13.8682 6.96723C13.6689 7.15836 13.6622 7.47487 13.8533 7.67419L15.3794 9.26563L8.33972 9.26563C8.06358 9.26563 7.83972 9.48948 7.83972 9.76563C7.83972 10.0418 8.06358 10.2656 8.33972 10.2656L15.3493 10.2656Z"
-              fill="#2C2D31"
-            />
-          </svg>
-        </a>
+        <!-- <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefaultSeason" id="flexRadioDefaultSeason1" value="globalParamSeasonFluctuationСoeff" >
+        <label class="form-check-label" for="flexRadioDefaultSeason1">
+          Коэффициенты колебания
+        </label>
+      </div> -->
+
+      <a class="icon-link icon-link-hover d-inline-flex align-items-baseline" style="--bs-link-hover-color-rgb: 25, 135, 84;" href="#">
+        Коэффициенты
+        <i class="bi bi-arrow-right"></i>
+      </a>
       </div>
     </div>
 
+    <!-- старая версия Всплески -->
+    <!-- <section class="parameters_spikes">
+    <p class="parameters_spikes-title">Очистка от всплесков продаж</p>
+    <div class = "parameters_spikes--wrap">
+    <label for="parameters_spikes-method">Метод очистки</label>
+    <select id="parameters_spikes-method" class="form-select">
+      <option value="globalParamSpikesMethodNot" selected>Не установлено</option>
+      <option value="globalParamSpikesMethodInterquartile">Интерквартиль</option>
+      <option value="globalParamSpikesMethodStandardDeviation">Стандартное отклонение</option>
+    </select>
+  </div>
+  </section> -->
+
     <!-- новая версия Всплески -->
-    <div class="card" style="width: 100%">
+    <div class="card border rounded-3 shadow-sm" style="width: 100%">
       <div class="card-body" id="parameters_spikes-method">
         <h5 class="card-title block_title">Очистка от всплесков продаж</h5>
-        <div class="form-check">
+        <div class="form-check mt-3">
           <input
             class="form-check-input"
             type="radio"
@@ -190,10 +250,10 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Период(неделя, месяц, квартал) по которому ведется расчет"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Период(неделя, месяц, квартал) по которому ведется расчет"
               >Период</span
             >
             <input
@@ -208,11 +268,11 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Нижняя и верхняя граница в стандартных отклонениях от средней.
-  Чем больше значение - тем больше свободы продаж"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Нижняя и верхняя граница в стандартных отклонениях от средней.
+Чем больше значение - тем больше свободы продаж"
               >σ НГ</span
             >
             <input
@@ -249,10 +309,10 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Период(неделя, месяц, квартал) по которому ведется расчет"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Период(неделя, месяц, квартал) по которому ведется расчет"
               >Период</span
             >
             <input
@@ -267,11 +327,11 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Нижняя и верхняя граница в интерквартиле от первого квартиля и третьего.
-  Чем больше значение - тем больше свободы продаж"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Нижняя и верхняя граница в интерквартиле от первого квартиля и третьего.
+Чем больше значение - тем больше свободы продаж"
               >IQR НГ</span
             >
             <input
@@ -297,10 +357,24 @@
       </div>
     </div>
 
-    <div class="card" style="width: 100%">
+    <!-- <section class="parameters_oos-wrapper">
+    <p class="parameters_oos-title">Очистка от OOS</p>
+    <div class="parameters_oos">
+      <label for="parameters_oos-method">Метод очистки</label>
+      <select id="parameters_oos-method" class="form-select">
+        <option value="globalParamOosNot" selected>Не установлено</option>
+        <option value="globalParamOosAverageBalance">По среднему остатку</option>
+        <option value="globalParamOosAmountBalance">По сумме остатка</option>
+        <option value="globalParamOosShareStore">По доле ТТ</option>
+        <option value="globalParamOosDaysRemaining">По кол-ву дней с остатком</option>
+      </select>
+    </div>
+  </section> -->
+
+    <div class="card border rounded-3 shadow-sm" style="width: 100%">
       <div class="card-body" id="parameters_oos-method">
         <h5 class="card-title block_title">Очистка от OOS</h5>
-        <div class="form-check">
+        <div class="form-check mt-3">
           <input
             class="form-check-input"
             type="radio"
@@ -328,11 +402,11 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Среднее в день за период(неделя, месяц, квартал).
-            Если средний остаток в расчитываемый период меньше, чем установленное значение"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Среднее в день за период(неделя, месяц, квартал).
+          Если средний остаток в расчитываемый период меньше, чем установленное значение"
               >Минимальное значение</span
             >
             <input
@@ -357,13 +431,12 @@
           </label>
           <div class="input-group input-group-sm mb-3">
             <span
-              class="input-group-text"
+              class="input-group-text custom-tooltip"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Сумма за период(неделя, месяц, квартал).
-            Если сумма остатка в расчитываемый период меньшее чем установленное значение"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-title="Сумма за период(неделя, месяц, квартал).
+          Если сумма остатка в расчитываемый период меньшее чем установленное значение"
               >Минимальное значение</span
             >
             <input
@@ -390,12 +463,12 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Доля ТТ где остаток SKU >0 по дням.
-  Среднее значение доли за период(неделя, месяц, квартал)
-  Если среднее значение доли за период меньше чем установленное значение"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Доля ТТ где остаток SKU >0 по дням.
+Среднее значение доли за период(неделя, месяц, квартал)
+Если среднее значение доли за период меньше чем установленное значение"
               >Доля ТТ с остатком</span
             >
             <input
@@ -422,11 +495,11 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Доля дней где остаток >0 за период(неделя, месяц,квартал).
-  Если расчитанная доля за период меньше чем установленное значение"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Доля дней где остаток >0 за период(неделя, месяц,квартал).
+Если расчитанная доля за период меньше чем установленное значение"
               >Доля дней с остатком</span
             >
             <input
@@ -441,11 +514,24 @@
       </div>
     </div>
 
+    <!-- старая версия Восстановление -->
+    <!-- <section class="container_parameters_sales_recovery" class="form-select">
+    <p class="parameters_oos-title">Восстановление продаж</p>
+    <div class="parameters_oos">
+      <label for="parameters_oos-method">Метод очистки</label>
+      <select id="parameters_sales_recovery-method" class="form-select">
+        <option value="globalParamSpikesMethodNot" selected>Не установлено</option>
+        <option value="option2">Как тренд</option>
+        <option value="globalParamSpikesMethodStandardDeviation">Как среднее</option>
+      </select>
+    </div>
+  </section> -->
+
     <!-- новая версия Восстановление -->
-    <div class="card" style="width: 100%">
+    <div class="card border rounded-3 shadow-sm" style="width: 100%">
       <div class="card-body" id="parameters_sales_recovery-method">
         <h5 class="card-title block_title">Восстановление продаж</h5>
-        <div class="form-check">
+        <div class="form-check mt-3">
           <input
             class="form-check-input"
             type="radio"
@@ -473,10 +559,10 @@
             <span
               class="input-group-text"
               id="inputGroup-sizing-sm"
-              data-bs-container="body"
-              data-bs-toggle="popover"
-              data-bs-placement="right"
-              data-bs-content="Период(неделя, месяц, квартал) по которому ведется расчет"
+              data-bs-toggle="tooltip"
+              data-bs-placement="top"
+              data-bs-custom-class="custom-tooltip"
+              data-bs-title="Период(неделя, месяц, квартал) по которому ведется расчет"
               >Период</span
             >
             <input
@@ -495,7 +581,7 @@
               data-bs-toggle="tooltip"
               data-bs-custom-class="custom-tooltip"
               data-bs-title="Смещение периода на количество значений (может быть как и + так и -).
-  У краев данных происходит дополнительное смещение что бы покрыть весь заданный период"
+У краев данных происходит дополнительное смещение что бы покрыть весь заданный период"
               >Сдвиг</span
             >
             <input
@@ -545,11 +631,12 @@
       </div>
     </div>
 
-    <section class="container_parameters_buttonSave justify-content-end">
+    <section class="container_parameters_buttonSave">
       <span id="check-mark_button">✔️ сохранено</span>
       <button
         type="button"
-        class="btn btn-primary mx-2"
+        class="btn btn-primary"
+        style="width: 20%; height: 30px"
         onclick="saveSelectedGlobalParameters()"
         id="parameters_saveButton"
       >
