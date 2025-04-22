@@ -1,0 +1,167 @@
+<!-- новая версия -->
+<div class="page__content page-content data-page">
+  <header class="page-content__header">
+    <p>Сезонность</p>
+  </header> 
+
+  <div class="seasonality_container shadow-sm">
+    <div
+      class=".card-regular_assort reg_ass"
+      style="width: 100%; border: 1px solid transparent"
+    >
+      <div class="card-body">
+        <h5 class="card-title block_title">Агрегация данных</h5>
+        <div class="regular_assort__aggregation mt-3">
+          <label for="seasonality_time">Агрегат по времени</label>
+          <select id="seasonality_time" class="form-select form-select-sm fs-5">
+            <option value="not_selected">Не установлено</option>
+            <option value="seasonality_timeDay">День</option>
+            <option value="seasonality_timeWeek" selected>Неделя</option>
+            <option value="seasonality_timeMonth">Месяц</option>
+            <option value="seasonality_timeQuarter">Квартал</option>
+          </select>
+          <label for="seasonality_geography">Агрегат по географии</label>
+          <select
+            id="seasonality_geography"
+            class="form-select form-select-sm fs-5"
+          >
+            <option value="not_selected">Не установлено</option>
+            <option value="seasonality_geographyСhain" selected>Сеть</option>
+            <option value="option1">Страна</option>
+            <option value="option2">Регион</option>
+            <option value="option3">Город</option>
+            <option value="option4">Магазин</option>
+          </select>
+          <label for="seasonality_groupSCU">Агрегат по позиции</label>
+          <select
+            id="seasonality_groupSCU"
+            class="form-select form-select-sm fs-5"
+          >
+            <option value="not_selected">Не установлено</option>
+            <option value="groupe1" selected>Категория</option>
+            <option value="option2">SKU</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class=".card-regular_assort" style="width: 100%">
+      <div class="card-body">
+        <h5 class="card-title block_title">Настройки сезонности</h5>
+        <div class="regular_assort__aggregation2 mt-3">
+          <label for="seasonality_method">Метод расчёта базы колебаний</label>
+          <select
+            id="seasonality_method"
+            class="form-select form-select-sm fs-5"
+          >
+            <option value="not_selected">Не установлено</option>
+            <option value="fluctuation_average" selected>Колебания от средней</option>
+            <option value="fluctuation_trend">Колебания от тренда</option>
+          </select>
+          <div>
+            <div class="form-check form-switch seasonality_pre-smoothing">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="flexSwitchCheckChecked"
+                checked
+              />
+              <label class="form-check-label" for="flexSwitchCheckChecked"
+                >Предварительное сглаживание</label
+              >
+            </div>
+          </div>
+
+          <label class="mt-3" for="seasonality_scenario"
+            >Выбрать коэффициенты</label
+          >
+          <select
+            id="seasonality_scenario"
+            placeholder="Выберите из списка"
+            class="form-select form-select-sm fs-5"
+          >
+            <option value="" disabled selected>Выберите из списка</option>
+            <option value="1">Коэффициенты по тренду#1</option>
+            <option value="2">По средней#2</option>
+          </select>
+          <div class="seasonality_buttons">
+            <button
+              type="button"
+              class="btn btn-outline-primary outline-primary-project"
+              style="width: 43%"
+            >
+              Сохранить коэффициенты
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              style="width: 43%"
+              onclick="loadDataSeasonality()"
+              id="seasonality__calculateForecastButton"
+            >
+              Рассчитать коэффициенты
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="seasonality_chart"></div>
+</div>
+
+<!-- старая версия -->
+<!-- <div class="seasonality_contaier">
+    <section class="seasonality_aggregate">
+        <p class = "seasonality__aggregation-title">Агрегация данных</p>
+    <label for="seasonality_time">Агрегат по времени</label>
+    <select id="seasonality_time">
+        <option value="not_selected">Не установлено</option>
+        <option value="seasonality_timeDay" >День</option>
+        <option value="seasonality_timeWeek" selected >Неделя</option>
+        <option value="seasonality_timeMonth">Месяц</option>
+        <option value="seasonality_timeQuarter">Квартал</option>
+    </select>
+    <label for="seasonality_geography">Агрегат по географии</label>
+    <select id="seasonality_geography">
+        <option value="not_selected">Не установлено</option>
+        <option value="seasonality_geographyСhain" selected>Сеть</option>
+        <option value="option1">Страна</option>
+        <option value="option2">Регион</option>
+        <option value="option3">Город</option>
+        <option value="option4">Магазин</option>
+    </select>
+
+    <label for="seasonality_groupSCU">Агрегат по позиции</label>
+    <select id="seasonality_groupSCU">
+        <option value="not_selected">Не установлено</option>
+        <option value="groupe1" selected>Категория</option>
+        <option value="option2">SKU</option>
+    </select>
+</section>
+
+<section class = "seasonality_calculation">
+    <label for="seasonality_method">Метод расчета сезонности</label>
+    <select id="seasonality_method">
+        <option value="not_selected">Не установлено</option>
+        <option value="fluctuation_average">Колебания от средней</option>
+        <option value="fluctuation_trend">Колебания от тренда</option>
+    </select>
+
+    <label for="seasonality_season-smooth">Предварительное сглаживание</label>
+    <input type="checkbox" id="seasonality_season-smooth">
+    <button onclick="loadDataSeasonality()" id="seasonality__calculateForecastButton">Рассчитать</button>
+
+    <select id="seasonality_scenario">
+        <option value="option0">Сохранить прежние настройки</option>
+        <option value="option1">Сценарий 1</option>
+        <option value="option2">Сценарий 2</option>
+        <option value="option3">Сценарий 3</option>
+    </select>
+    <section></section>
+    <section class="seasonality_Buttons">
+        <button  id="seasonality_exportButton">Экспорт</button>
+        <button  id="seasonality_importButton">Импорт</button>
+    </section>
+</section>
+    <div id="seasonality_chart"></div>
+</div> -->

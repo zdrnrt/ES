@@ -1,1824 +1,1850 @@
+<!-- новая версия -->
 <div class="page__content page-content data-page">
-  <header class="page-content__header">
-    <p>Прогнозирование</p>
-  </header>
-
-  <div class="regular_assort_container"> 
-    <div class="card-regular_assort reg_ass" style="width: 100%">
-      <div class="card-body">
-        <h5 class="card-title block_title mb-6">Агрегация выходных данных</h5>
-        <div class="regular_assort__aggregation">
-          <label for="regular_assort__aggregation-time"
-            >Агрегат по времени</label
-          >
-          <select id="regular_assort__aggregation-time" class="form-select">
-            <option value="not_selected">Не установлено</option>
-            <option value="option1">День</option>
-            <option value="option2" selected>Неделя</option>
-            <option value="option4">Месяц</option>
-            <option value="option3">Квартал</option>
-          </select>
-          <label for="regular_assort__aggregation-geo"
-            >Агрегат по географии</label
-          >
-          <select id="regular_assort__aggregation-geo" class="form-select">
-            <option value="not_selected">Не установлено</option>
-            <option value="chain" selected>Сеть</option>
-            <option value="option2">Страна</option>
-            <option value="option3">Регион</option>
-            <option value="option4">Город</option>
-            <option value="option5">Магазин</option>
-          </select>
-          <label for="regular_assort__aggregation-scu"
-            >Агрегат по позиции</label
-          >
-          <select id="regular_assort__aggregation-scu" class="form-select">
-            <option value="not_selected">Не установлено</option>
-            <option value="option2">Категория</option>
-            <option value="option2" selected>SKU</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="card-regular_assort" style="width: 100%">
-      <div class="card-body">
-        <h5 class="card-title block_title">
-          Метод прогнозирования и сценарий расчета
-        </h5>
-        <div class="regular_assort__aggregation2">
-          <label for="input-group-input-group-lg">Метод прогнозирования</label>
-          <div
-            class="input-group input-group-lg"
-            id="input-group-input-group-lg"
-          >
-            <input
-              id="regular_assort_method"
-              type="text"
-              class="form-control"
-              placeholder=""
-              aria-describedby="button-addon1"
-            />
-            <button
-              class="btn btn-outline-primary"
-              type="button"
-              id="button-addon1 buttonRegularAssortMethod"
-              onclick="openModal_MethodForecastRA()"
-            >
-              Настроить
-            </button>
-          </div>
-          <label for="regular_assort_script">Сценарий расчета</label>
-          <select class="form-select regular_assort_script" aria-label="Default select example">
-            <option selected>Выберите сценарий расчета</option>
-            <option value="1">Сценарий1</option>
-            <option value="2">Сценарий2</option>
-            <option value="3">Сценарий3</option>
-          </select>
-          <div class="regular_assort_buttons">
-            <button
-              type="button"
-              class="p-2 btn btn-outline-primary"
-              style="width: 31%"
-            >
-              Сохранить сценарий
-            </button>
-            <button
-              type="button"
-              class="p-2 btn btn-outline-secondary outline-secondary-project"
-              style="width: 31%"
-              onclick="openModalOptRA()"
-            >
-              Оптимизировать
-            </button>
-            <button
-              type="button"
-              class="p-2 btn btn-primary success-project"
-              style="width: 31%"
-              onclick="loadAndFilterData()"
-              id="regular_assort__calculateForecastButton"
-            >
-              Рассчитать прогноз
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ////модалка метод проноза -->
-<div id="modalMethodForecastRegAss" class="modalMethodForecastRegAss">
-    <div class="modal-content_MethodForecastRegAss">
-        <div class="modal-header_MethodForecastRegAss">
-        <h2 >Методы прогноза</h2>
-        <span class="close" onclick="closeModal_MethodForecastRegAss()">&times;</span>
-        </div>
-
-   <div class="modal-body_MethodForecastRegAss" style="width: 100%;">
-            <div class="card-body" id="par">
-                <div class="radio-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod1" value="method1">
-                        <label class="form-check-label" for="modalMethod1">Скользящая средняя</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="3">
-                        </div>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod5" value="method5">
-                        <label class="form-check-label" for="modalMethod5">Линейная регрессия</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="6">
-                        </div>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod2" value="method2">
-                        <label class="form-check-label" for="modalMethod2">Средневзвешенная</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="5">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Гладкость</span>
-                            <input type="text" class="form-control" value="0.7">
-                        </div>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod3" value="method3">
-                        <label class="form-check-label" for="modalMethod3">Экспоненциальное сглаживание</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="3">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">α</span>
-                            <input type="text" class="form-control" value="0.8">
-                        </div>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod4" value="method4">
-                        <label class="form-check-label" for="modalMethod4">Хольта-Винтерса</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="12">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">α</span>
-                            <input type="text" class="form-control" value="0,8">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">β</span>
-                            <input type="text" class="form-control" value="0,5">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">γ</span>
-                            <input type="text" class="form-control" value="0,7">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">m</span>
-                            <input type="text" class="form-control" value="12">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <label for="type_seasonality">Тип сезонности</label>
-                            <select class="form-select ml-3" name="type_seasonality" id="type_seasonality">
-                                <option value="">Аддитивная</option>
-                                <option value="">Мультипликативная</option>
-                            </select>
-                        </div>
-                    </div>
-
-
-     
-
-                    
-                
-
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod6" value="method6">
-                        <label class="form-check-label" for="modalMethod6">Множественная регрессия</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="12">
-                        </div>
-                        <div class="form-check custom-checkbox ml-1" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Выбор переменных</label
-                            >
-                            </div>
-                            <div class="form-check custom-checkbox ml-3" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Цена</label
-                            >
-                            </div>
-                            <div class="form-check custom-checkbox ml-3" id="methods-cleaning">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                                />
-                                <label class="form-check-label" for="oos-cleaning"
-                                >Промо признак</label
-                                >
-                            </div>
-                            <div class="form-check custom-checkbox ml-3" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Температура</label
-                            >
-                            </div>
-                    </div>
-
-            
-
-          
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod7" value="method7">
-                        <label class="form-check-label" for="modalMethod7">Полиномиальная регрессия</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="12">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Степень полинома</span>
-                            <input type="text" class="form-control" value="2">
-                        </div>
-                    </div>
-
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefaultSpikes" id="modalMethod8" value="method8">
-                        <label class="form-check-label" for="modalMethod8">Вероятностный прогноз</label>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Период</span>
-                            <input type="text" class="form-control" value="12">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Ширина ядра KDE</span>
-                            <input type="text" class="form-control" value="0,3">
-                        </div>
-                        <div class="input-group input-group-sm mb-1">
-                            <span class="input-group-text">Доверительный интервал</span>
-                            <input type="text" class="form-control" value="98%">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Сохранить</button>
-                </div>
+    <header class="page-content__header">
+      <p>Регулярный ассортимент</p>
+    </header>
+  
+  
+    <div class="row border border-1 rounded-4 mx-1 shadow-sm"> 
+      <!-- Левый блок: Агрегация выходных данных -->
+      <div class="col-md-6 p-0">
+        <!-- <div class="card"> -->
+          <div class="card-body">
+            <h5 class="card-title block_title mb-3">Агрегация выходных данных</h5>
+            <div class="mb-3">
+              <label for="regular_assort__aggregation-time" class="form-label">Агрегат по времени</label>
+              <select id="regular_assort__aggregation-time" class="form-select form-select-sm fs-5">
+                <option value="not_selected">Не установлено</option>
+                <option value="option1">День</option>
+                <option value="option2" selected>Неделя</option>
+                <option value="option4">Месяц</option>
+                <option value="option3">Квартал</option>
+              </select>
             </div>
-        </div>
+            <div class="mb-3">
+              <label for="regular_assort__aggregation-geo" class="form-label">Агрегат по географии</label>
+              <select id="regular_assort__aggregation-geo" class="form-select form-select-sm fs-5">
+                <option value="not_selected">Не установлено</option>
+                <option value="chain" selected>Сеть</option>
+                <option value="option2">Страна</option>
+                <option value="option3">Регион</option>
+                <option value="option4">Город</option>
+                <option value="option5">Магазин</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="regular_assort__aggregation-scu" class="form-label">Агрегат по позиции</label>
+              <select id="regular_assort__aggregation-scu" class="form-select form-select-sm fs-5">
+                <option value="not_selected">Не установлено</option>
+                <option value="option2">Категория</option>
+                <option value="option2" selected>SKU</option>
+              </select>
+            </div>
+  
+            <div class="row">
+              <div class="col">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Период прогноза</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="4"
+                    aria-label="Сумма в рублях (с точкой и двумя десятичными знаками)"
+                  />
+                  <span class="input-group-text">нед</span>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Лаг прогноза</span>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="1"
+                    aria-label="Сумма в рублях (с точкой и двумя десятичными знаками)"
+                  />
+                  <span class="input-group-text">нед</span>
+                </div>
+              </div>
+            </div>
+  
+  
+          </div>
+        <!-- </div> -->
+      </div>
+      
+      <!-- Правый блок: Метод прогнозирования и сценарий расчета -->
+      <div class="col-md-6 d-flex flex-column p-0">
+        <!-- <div class="card"> -->
+          <div class="card-body flex-fill">
+            <h5 class="card-title block_title mb-3">Метод прогнозирования и сценарий расчета</h5>
+            <div class="mb-3">
+              <label for="regular_assort_method" class="form-label">Метод прогнозирования</label>
+              <div class="input-group">
+                <input id="regular_assort_method" type="text" class="form-control p-4 fs-5 fw-light" placeholder="Выберите метод прогноза" aria-describedby="button-addon1" />
+                <button class="btn btn-outline-primary" type="button" id="button-addon1" onclick="openModal_MethodForecastRA()">Настроить</button>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="seasonality_scenario">Сценарий расчета</label>
+              <select
+                id="seasonality_scenario"
+                placeholder="Выберите из списка"
+                class="form-select form-select-sm fs-5"
+              >
+                <option value="" disabled selected>Выберите из списка</option>
+                <option value="2">Сценарий 1</option>
+                <option value="2">Сценарий 2</option>
+              </select>
+            </div>
+            <div></div>
+            <div class="d-flex justify-content-between mt-5">
+              <button type="button" class="btn btn-outline-primary" style="width: 31%">Сохранить сценарий</button>
+              <button type="button" class="btn btn-outline-secondary" style="width: 31%" onclick="openModalOptRA()">Оптимизировать</button>
+              <button type="button" class="btn btn-primary" style="width: 31%" onclick="window.loadAndFilterData()" id="regular_assort__calculateForecastButton">Рассчитать прогноз</button>
+            </div>
+          </div>
+        <!-- </div> -->
+      </div>
+    
     </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////авп -->
-<div id="modalOptRegAss" class="modalOptRegAss">
-    <div class="modal-contentOptRegAss">
-        <div class="modal-header">
-        <h2 >Методы оптимизации</h2>
-        <span class="close" onclick="closeModalOptRA()">&times;</span>
-        </div>
-
-        <div class="modal-body">
-                <div class="left_sectionModalRegAs">
-                <div class="form-check custom-checkbox" id="methods-cleaning">
-                <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                <label class="form-check-label fw-bold fs-4" for="oos-cleaning" 
-                    >Методы подготовки</label
-                >
-                </div>
-
-                <div class="form-check custom-checkbox" id="methods-cleaning">
-                <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                    >Очистка от OOS</label
-                >
-                </div>
-
-                <div class="form-check custom-checkbox" id="methods-average-stock">
-                <input class="form-check-input" type="checkbox" id="average-stock" />
-                <label class="form-check-label" for="average-stock"
-                    >По среднему остатку</label
-                >
-                </div>
-
-                <div class="d-flex flex-row flex-wrap ml-5">
-                <div class="form-check custom-checkbox">
-                    <input
-                    class="form-check-input"
-                    type="checkbox"
-                    id="average-stock2"
-                    />
-                    <label class="form-check-label" for="average-stock2"></label>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-text">Минимальное значение, от:</span>
-                    <input
-                    type="text"
-                    aria-label="Имя"
-                    class="form-control"
-                    value="0"
-                    />
-                    <span class="input-group-text">до:</span>
-                    <input
-                    type="text"
-                    aria-label="Фамилия"
-                    class="form-control"
-                    value="10"
-                    />
-                    <span class="input-group-text">шаг:</span>
-                    <input
-                    type="text"
-                    aria-label="Фамилия"
-                    class="form-control"
-                    value="0.1"
-                    />
-                </div>
-                </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >По сумме остатка</label
-                    >
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Минимальное значение, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="0"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="10"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                        <label class="form-check-label" for="oos-cleaning"
-                        >По доле ТТ</label
-                        >
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Доля ТТ с остатком, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="0%"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="100%"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="10%"
-                        />
-                    </div>
-                    </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                        <label class="form-check-label" for="oos-cleaning"
-                        >По кол-ву дней с остатком</label
-                        >
-                    </div>
-
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Доля дней с остатком, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="0%"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="100%"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="10%"
-                        />
-                    </div>
-                    </div>
-                    <div class="form-check custom-checkbox border-bottom-1" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                        >Очистка от Промо</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Исключение промо продаж</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                        >Очистка от сезонности</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Коэффициенты колебания</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Агрегация по времени</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Агрегация по географии</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                        <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                        <label class="form-check-label" for="oos-cleaning"
-                            >Агрегация по позиции</label
-                        >
-                        </div>
-                    <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Метод расчета базы колебаний</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Предварительное сглаживание</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                        >Очистка от выбросов</label
-                    >
-                    </div>
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Стандартное отклонение</label
-                    >
-                    </div>
-                    <div class="d-flex flex-row flex-wrap">
-                    <div class="form-check custom-checkbox ml-5">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Период, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="2"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="5"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">σ НГ, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="4"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">σ ВГ, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="4"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                        <label class="form-check-label" for="oos-cleaning"
-                            >Стандартное отклонение</label
-                        >
-                        </div>
-                    <div class="d-flex flex-row flex-wrap">
-                    <div class="form-check custom-checkbox ml-5">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Период, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="2"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="5"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">IQR НГ, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="4"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="0.5"
-                        />
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">IQR ВГ, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="4"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="0.5"
-                        />
-                    </div>
-                    </div>
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                        <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                        >Восстановление</label
-                        >
-                    </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                    <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                    <label class="form-check-label" for="oos-cleaning"
-                        >Как среднее</label
-                    >
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Период, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="5"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Сдвиг, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="-4"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="4"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                        <label class="form-check-label" for="oos-cleaning"
-                        >Как тренд</label
-                        >
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Период, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="5"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Сдвиг, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="-4"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="4"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-                </div>
-                
-                   <!-- <div class="d-flex" style="height: 100%;">
-                        <div class="vr"></div>
-                    </div> -->
-
-                <div class="right-section">
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="oos-cleaning"
-                        />
-                        <label class="form-check-label fw-bold fs-4" for="oos-cleaning"
-                        >Методы прогноза</label
-                        >
-                    </div>
-
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="oos-cleaning"
-                        />
-                        <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                        >Скользящая средняя</label
-                        >
-                    </div>
-
-
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Период, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="12"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-
+   
+    <div class="row border border-1 rounded-4 mx-1 shadow-sm mt-4 p-3">
+      <!-- Заголовок -->
+      <div class="d-flex justify-content-between align-items-start w-100">
+        <p class="fw-bold mb-0 fs-5">Аналитические показатели</p>
+        <button
+          class="btn p-0 text-primary"
+          style="color: #474bab !important; border: none; background: none"
+        >
+          Скачать прогноз
+        </button>
+      </div>
+  
+      <!-- iframe -->
+      <iframe
+        id="tb_regular_assort_results"
+        src=""
+        class="mt-3 w-100"
+        style="height: 400px; border: none"
+      ></iframe>
+    </div>
+  </div>
+  
+  
+  <!-- ////модалка метод проноза -->
+  <div id="modalMethodForecastRegAss" class="modalMethodForecastRegAss">
+      <div class="modal-content_MethodForecastRegAss">
+          <div class="modal-header_MethodForecastRegAss">
+          <h2 >Методы прогноза</h2>
+          <span class="close" onclick="closeModal_MethodForecastRegAss()">&times;</span>
+          </div>
+  
+     <div class="modal-body_MethodForecastRegAss" style="width: 100%;">
+              <div class="card-body" id="par">
+                  <div class="radio-group">
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod1" value="method1">
+                          <label class="form-check-label" for="modalMethod1">Скользящая средняя</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="3">
+                          </div>
+                      </div>
+  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod5" value="method5">
+                          <label class="form-check-label" for="modalMethod5">Линейная регрессия</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="6">
+                          </div>
+                      </div>
+  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod2" value="method2">
+                          <label class="form-check-label" for="modalMethod2">Средневзвешенная</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="5">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Гладкость</span>
+                              <input type="text" class="form-control" value="0.7">
+                          </div>
+                      </div>
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod3" value="method3">
+                          <label class="form-check-label" for="modalMethod3">Экспоненциальное сглаживание</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="3">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">α</span>
+                              <input type="text" class="form-control" value="0.8">
+                          </div>
+                      </div>
+  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod4" value="method4">
+                          <label class="form-check-label" for="modalMethod4">Хольта-Винтерса</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="12">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">α</span>
+                              <input type="text" class="form-control" value="0,8">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">β</span>
+                              <input type="text" class="form-control" value="0,5">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">γ</span>
+                              <input type="text" class="form-control" value="0,7">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">m</span>
+                              <input type="text" class="form-control" value="12">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <label for="type_seasonality">Тип сезонности</label>
+                              <select class="form-select ml-3" name="type_seasonality" id="type_seasonality">
+                                  <option value="">Аддитивная</option>
+                                  <option value="">Мультипликативная</option>
+                              </select>
+                          </div>
+                      </div>
+  
+  
+       
+  
+                      
+                  
+  
+  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod6" value="method6">
+                          <label class="form-check-label" for="modalMethod6">Множественная регрессия</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="12">
+                          </div>
+                          <div class="form-check custom-checkbox ml-1" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Выбор переменных</label
+                              >
+                              </div>
+                              <div class="form-check custom-checkbox ml-3" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Цена</label
+                              >
+                              </div>
+                              <div class="form-check custom-checkbox ml-3" id="methods-cleaning">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                                  />
+                                  <label class="form-check-label" for="oos-cleaning"
+                                  >Промо признак</label
+                                  >
+                              </div>
+                              <div class="form-check custom-checkbox ml-3" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Температура</label
+                              >
+                              </div>
+                      </div>
+  
+              
+  
             
-                    <div class="form-check custom-checkbox" id="methods-cleaning">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="oos-cleaning"
-                        />
-                        <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                        >Средневзвешенная</label
-                        >
-                    </div>
-
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                    <div class="form-check custom-checkbox">
-                        <input
-                        class="form-check-input"
-                        type="checkbox"
-                        id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-text">Период, от:</span>
-                        <input
-                        type="text"
-                        aria-label="Имя"
-                        class="form-control"
-                        value="1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="12"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                        type="text"
-                        aria-label="Фамилия"
-                        class="form-control"
-                        value="1"
-                        />
-                    </div>
-                    </div>
-
-                    <div class="d-flex flex-row flex-wrap ml-5">
-                        <div class="form-check custom-checkbox">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="average-stock2"
-                        />
-                        <label class="form-check-label" for="average-stock2"></label>
-                        </div>
-                        <div class="input-group">
-                        <span class="input-group-text">Гладкость, от:</span>
-                        <input
-                            type="text"
-                            aria-label="Имя"
-                            class="form-control"
-                            value="-1"
-                        />
-                        <span class="input-group-text">до:</span>
-                        <input
-                            type="text"
-                            aria-label="Фамилия"
-                            class="form-control"
-                            value="1"
-                        />
-                        <span class="input-group-text">шаг:</span>
-                        <input
-                            type="text"
-                            aria-label="Фамилия"
-                            class="form-control"
-                            value="0.1"
-                        />
-                        </div>
-                    </div>
-
-                        <div class="form-check custom-checkbox" id="methods-cleaning">
-                            <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="oos-cleaning"
-                            />
-                            <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                            >Экспоненциальное сглаживание</label
-                            >
-                        </div>
-                        
-                        <div class="d-flex flex-row flex-wrap ml-5">
-                        <div class="form-check custom-checkbox">
-                            <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="average-stock2"
-                            />
-                            <label class="form-check-label" for="average-stock2"></label>
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Период, от:</span>
-                            <input
-                            type="text"
-                            aria-label="Имя"
-                            class="form-control"
-                            value="1"
-                            />
-                            <span class="input-group-text">до:</span>
-                            <input
-                            type="text"
-                            aria-label="Фамилия"
-                            class="form-control"
-                            value="12"
-                            />
-                            <span class="input-group-text">шаг:</span>
-                            <input
-                            type="text"
-                            aria-label="Фамилия"
-                            class="form-control"
-                            value="1"
-                            />
-                        </div>
-                        </div>
-
-
-                        <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                            />
-                            <label class="form-check-label" for="average-stock2"></label>
-                            </div>
-                            <div class="input-group">
-                            <span class="input-group-text"
-                                >α, от:</span
-                            >
-                            <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="0"
-                            />
-                            <span class="input-group-text">до:</span>
-                            <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                            />
-                            <span class="input-group-text">шаг:</span>
-                            <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="0.1"
-                            />
-                            </div>
-                        </div>
-                    
-
-                            <div class="form-check custom-checkbox" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                                >Хольта-Винтерса</label
-                            >
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Период, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="12"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >α, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="0"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="0.1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >β, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="0"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="0.1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >γ, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="0"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="0.1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >m, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="2"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="12"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Тип сезонности</label
-                            >
-                            </div>
-
-                            <div class="form-check custom-checkbox" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                                >Линейная регрессия</label
-                            >
-                            </div>
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Период, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="12"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-                            <div class="form-check custom-checkbox" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                                >Множественная регрессия</label
-                            >
-                            </div>
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Период, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="0"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="10"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="0.1"
-                                />
-                            </div>
-                            </div>
-                            <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Выбор переменных</label
-                            >
-                            </div>
-                            <div class="form-check custom-checkbox ml-6" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Цена</label
-                            >
-                            </div>
-                            <div class="form-check custom-checkbox ml-6" id="methods-cleaning">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                                />
-                                <label class="form-check-label" for="oos-cleaning"
-                                >Признак</label
-                                >
-                            </div>
-                            <div class="form-check custom-checkbox ml-6" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label" for="oos-cleaning"
-                                >Температура</label
-                            >
-                            </div>
-                            <div class="form-check custom-checkbox" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                                >Полиномиальная регрессия</label
-                            >
-                            </div>
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Период, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="12"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Степень полинома, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="6"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="form-check custom-checkbox" id="methods-cleaning">
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="oos-cleaning"
-                            />
-                            <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
-                                >Вероятностный прогноз</label
-                            >
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Период, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="12"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Ширина ядра KDE, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="0,1"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="0,1"
-                                />
-                            </div>
-                            </div>
-
-                            <div class="d-flex flex-row flex-wrap ml-5">
-                            <div class="form-check custom-checkbox">
-                                <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="average-stock2"
-                                />
-                                <label
-                                class="form-check-label"
-                                for="average-stock2"
-                                ></label>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-text"
-                                >Доверительный интервал, от:</span
-                                >
-                                <input
-                                type="text"
-                                aria-label="Имя"
-                                class="form-control"
-                                value="50%"
-                                />
-                                <span class="input-group-text">до:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="99%"
-                                />
-                                <span class="input-group-text">шаг:</span>
-                                <input
-                                type="text"
-                                aria-label="Фамилия"
-                                class="form-control"
-                                value="1"
-                                />
-                            </div>
-                            </div>
-                        </div>
-        </div>
-
-                            <div class="modal-footer d-flex flex-column align-items-start">
-                            <h3 class="mb-3">Настройки оптимизации</h3>
-
-                            <div class="form-check custom-checkbox mb-3">
-                            <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                            <label class="form-check-label fw-bold fs-4 mb-3" for="oos-cleaning">Меры оптимизации</label>
-                            </div>
-
-                            <ul class="list-unstyled w-75 mb-1">
-                                <li class="mb-1">
-                                  <div class="row">
-                                    <!-- Первый столбец -->
-                                    <div class="col-6">
-                                      <div class="d-flex justify-content-between align-items-baseline">
-                                        <div class="form-check custom-checkbox" id="methods-cleaning">
-                                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                                          <label class="form-check-label fs-5 mb-1" for="oos-cleaning">WAPE, %</label>
+  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod7" value="method7">
+                          <label class="form-check-label" for="modalMethod7">Полиномиальная регрессия</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="12">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Степень полинома</span>
+                              <input type="text" class="form-control" value="2">
+                          </div>
+                      </div>
+  
+                      <div class="form-check">
+                          <input class="form-check-input" type="radio" name="radioModalMethodForecast" id="modalMethod8" value="method8">
+                          <label class="form-check-label" for="modalMethod8">Вероятностный прогноз</label>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Период</span>
+                              <input type="text" class="form-control" value="12">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Ширина ядра KDE</span>
+                              <input type="text" class="form-control" value="0,3">
+                          </div>
+                          <div class="input-group input-group-sm mb-1">
+                              <span class="input-group-text">Доверительный интервал</span>
+                              <input type="text" class="form-control" value="98%">
+                          </div>
+                      </div>
+                  </div>
+  
+                  <div class="modal-footer">
+                      <button id ="buttonModalRAMethodForecast" onclick="saveForecastMethodFromModal()" type="button" class="btn btn-primary">Сохранить</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////авп -->
+  <div id="modalOptRegAss" class="modalOptRegAss">
+      <div class="modal-contentOptRegAss">
+          <div class="modal-header">
+          <h2 >Методы оптимизации</h2>
+          <span class="close" onclick="closeModalOptRA()">&times;</span>
+          </div>
+  
+          <div class="modal-body">
+                  <div class="left_sectionModalRegAs">
+                  <div class="form-check custom-checkbox" id="methods-cleaning">
+                  <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                  <label class="form-check-label fw-bold fs-4" for="oos-cleaning" 
+                      >Методы подготовки</label
+                  >
+                  </div>
+  
+                  <div class="form-check custom-checkbox" id="methods-cleaning">
+                  <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                  <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                      >Очистка от OOS</label
+                  >
+                  </div>
+  
+                  <div class="form-check custom-checkbox" id="methods-average-stock">
+                  <input class="form-check-input" type="checkbox" id="average-stock" />
+                  <label class="form-check-label" for="average-stock"
+                      >По среднему остатку</label
+                  >
+                  </div>
+  
+                  <div class="d-flex flex-row flex-wrap ml-5">
+                  <div class="form-check custom-checkbox">
+                      <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="average-stock2"
+                      />
+                      <label class="form-check-label" for="average-stock2"></label>
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-text">Минимальное значение, от:</span>
+                      <input
+                      type="text"
+                      aria-label="Имя"
+                      class="form-control"
+                      value="0"
+                      />
+                      <span class="input-group-text">до:</span>
+                      <input
+                      type="text"
+                      aria-label="Фамилия"
+                      class="form-control"
+                      value="10"
+                      />
+                      <span class="input-group-text">шаг:</span>
+                      <input
+                      type="text"
+                      aria-label="Фамилия"
+                      class="form-control"
+                      value="0.1"
+                      />
+                  </div>
+                  </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >По сумме остатка</label
+                      >
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Минимальное значение, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="0"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="10"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                          <label class="form-check-label" for="oos-cleaning"
+                          >По доле ТТ</label
+                          >
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Доля ТТ с остатком, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="0%"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="100%"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="10%"
+                          />
+                      </div>
+                      </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                          <label class="form-check-label" for="oos-cleaning"
+                          >По кол-ву дней с остатком</label
+                          >
+                      </div>
+  
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Доля дней с остатком, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="0%"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="100%"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="10%"
+                          />
+                      </div>
+                      </div>
+                      <div class="form-check custom-checkbox border-bottom-1" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                          >Очистка от Промо</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Исключение промо продаж</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                          >Очистка от сезонности</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Коэффициенты колебания</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Агрегация по времени</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Агрегация по географии</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                          <label class="form-check-label" for="oos-cleaning"
+                              >Агрегация по позиции</label
+                          >
+                          </div>
+                      <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Метод расчета базы колебаний</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Предварительное сглаживание</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                          >Очистка от выбросов</label
+                      >
+                      </div>
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Стандартное отклонение</label
+                      >
+                      </div>
+                      <div class="d-flex flex-row flex-wrap">
+                      <div class="form-check custom-checkbox ml-5">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Период, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="2"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="5"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">σ НГ, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="4"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">σ ВГ, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="4"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                          <label class="form-check-label" for="oos-cleaning"
+                              >Стандартное отклонение</label
+                          >
+                          </div>
+                      <div class="d-flex flex-row flex-wrap">
+                      <div class="form-check custom-checkbox ml-5">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Период, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="2"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="5"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">IQR НГ, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="4"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="0.5"
+                          />
+                      </div>
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">IQR ВГ, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="4"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="0.5"
+                          />
+                      </div>
+                      </div>
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                          <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                          >Восстановление</label
+                          >
+                      </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                      <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                      <label class="form-check-label" for="oos-cleaning"
+                          >Как среднее</label
+                      >
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Период, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="5"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Сдвиг, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="-4"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="4"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                          <label class="form-check-label" for="oos-cleaning"
+                          >Как тренд</label
+                          >
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Период, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="5"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Сдвиг, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="-4"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="4"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+                  </div>
+                  
+                     <!-- <div class="d-flex" style="height: 100%;">
+                          <div class="vr"></div>
+                      </div> -->
+  
+                  <div class="right-section">
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="oos-cleaning"
+                          />
+                          <label class="form-check-label fw-bold fs-4" for="oos-cleaning"
+                          >Методы прогноза</label
+                          >
+                      </div>
+  
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="oos-cleaning"
+                          />
+                          <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                          >Скользящая средняя</label
+                          >
+                      </div>
+  
+  
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Период, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="12"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+  
+              
+                      <div class="form-check custom-checkbox" id="methods-cleaning">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="oos-cleaning"
+                          />
+                          <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                          >Средневзвешенная</label
+                          >
+                      </div>
+  
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                      <div class="form-check custom-checkbox">
+                          <input
+                          class="form-check-input"
+                          type="checkbox"
+                          id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                      </div>
+                      <div class="input-group">
+                          <span class="input-group-text">Период, от:</span>
+                          <input
+                          type="text"
+                          aria-label="Имя"
+                          class="form-control"
+                          value="1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="12"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                          type="text"
+                          aria-label="Фамилия"
+                          class="form-control"
+                          value="1"
+                          />
+                      </div>
+                      </div>
+  
+                      <div class="d-flex flex-row flex-wrap ml-5">
+                          <div class="form-check custom-checkbox">
+                          <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="average-stock2"
+                          />
+                          <label class="form-check-label" for="average-stock2"></label>
+                          </div>
+                          <div class="input-group">
+                          <span class="input-group-text">Гладкость, от:</span>
+                          <input
+                              type="text"
+                              aria-label="Имя"
+                              class="form-control"
+                              value="-1"
+                          />
+                          <span class="input-group-text">до:</span>
+                          <input
+                              type="text"
+                              aria-label="Фамилия"
+                              class="form-control"
+                              value="1"
+                          />
+                          <span class="input-group-text">шаг:</span>
+                          <input
+                              type="text"
+                              aria-label="Фамилия"
+                              class="form-control"
+                              value="0.1"
+                          />
+                          </div>
+                      </div>
+  
+                          <div class="form-check custom-checkbox" id="methods-cleaning">
+                              <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="oos-cleaning"
+                              />
+                              <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                              >Экспоненциальное сглаживание</label
+                              >
+                          </div>
+                          
+                          <div class="d-flex flex-row flex-wrap ml-5">
+                          <div class="form-check custom-checkbox">
+                              <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="average-stock2"
+                              />
+                              <label class="form-check-label" for="average-stock2"></label>
+                          </div>
+                          <div class="input-group">
+                              <span class="input-group-text">Период, от:</span>
+                              <input
+                              type="text"
+                              aria-label="Имя"
+                              class="form-control"
+                              value="1"
+                              />
+                              <span class="input-group-text">до:</span>
+                              <input
+                              type="text"
+                              aria-label="Фамилия"
+                              class="form-control"
+                              value="12"
+                              />
+                              <span class="input-group-text">шаг:</span>
+                              <input
+                              type="text"
+                              aria-label="Фамилия"
+                              class="form-control"
+                              value="1"
+                              />
+                          </div>
+                          </div>
+  
+  
+                          <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                              />
+                              <label class="form-check-label" for="average-stock2"></label>
+                              </div>
+                              <div class="input-group">
+                              <span class="input-group-text"
+                                  >α, от:</span
+                              >
+                              <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="0"
+                              />
+                              <span class="input-group-text">до:</span>
+                              <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                              />
+                              <span class="input-group-text">шаг:</span>
+                              <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="0.1"
+                              />
+                              </div>
+                          </div>
+                      
+  
+                              <div class="form-check custom-checkbox" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                                  >Хольта-Винтерса</label
+                              >
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Период, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="12"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >α, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="0"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="0.1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >β, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="0"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="0.1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >γ, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="0"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="0.1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >m, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="2"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="12"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Тип сезонности</label
+                              >
+                              </div>
+  
+                              <div class="form-check custom-checkbox" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                                  >Линейная регрессия</label
+                              >
+                              </div>
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Период, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="12"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+                              <div class="form-check custom-checkbox" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                                  >Множественная регрессия</label
+                              >
+                              </div>
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Период, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="0"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="10"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="0.1"
+                                  />
+                              </div>
+                              </div>
+                              <div class="form-check custom-checkbox ml-5" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Выбор переменных</label
+                              >
+                              </div>
+                              <div class="form-check custom-checkbox ml-6" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Цена</label
+                              >
+                              </div>
+                              <div class="form-check custom-checkbox ml-6" id="methods-cleaning">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                                  />
+                                  <label class="form-check-label" for="oos-cleaning"
+                                  >Признак</label
+                                  >
+                              </div>
+                              <div class="form-check custom-checkbox ml-6" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label" for="oos-cleaning"
+                                  >Температура</label
+                              >
+                              </div>
+                              <div class="form-check custom-checkbox" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                                  >Полиномиальная регрессия</label
+                              >
+                              </div>
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Период, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="12"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Степень полинома, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="6"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="form-check custom-checkbox" id="methods-cleaning">
+                              <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="oos-cleaning"
+                              />
+                              <label class="form-check-label fw-bold fs-5" for="oos-cleaning"
+                                  >Вероятностный прогноз</label
+                              >
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Период, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="12"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Ширина ядра KDE, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="0,1"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="0,1"
+                                  />
+                              </div>
+                              </div>
+  
+                              <div class="d-flex flex-row flex-wrap ml-5">
+                              <div class="form-check custom-checkbox">
+                                  <input
+                                  class="form-check-input"
+                                  type="checkbox"
+                                  id="average-stock2"
+                                  />
+                                  <label
+                                  class="form-check-label"
+                                  for="average-stock2"
+                                  ></label>
+                              </div>
+                              <div class="input-group">
+                                  <span class="input-group-text"
+                                  >Доверительный интервал, от:</span
+                                  >
+                                  <input
+                                  type="text"
+                                  aria-label="Имя"
+                                  class="form-control"
+                                  value="50%"
+                                  />
+                                  <span class="input-group-text">до:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="99%"
+                                  />
+                                  <span class="input-group-text">шаг:</span>
+                                  <input
+                                  type="text"
+                                  aria-label="Фамилия"
+                                  class="form-control"
+                                  value="1"
+                                  />
+                              </div>
+                              </div>
+                          </div>
+          </div>
+  
+                              <div class="modal-footer d-flex flex-column align-items-start">
+                              <h3 class="mb-3">Настройки оптимизации</h3>
+  
+                              <div class="form-check custom-checkbox mb-3">
+                              <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                              <label class="form-check-label fw-bold fs-4 mb-3" for="oos-cleaning">Меры оптимизации</label>
+                              </div>
+  
+                              <ul class="list-unstyled w-75 mb-1">
+                                  <li class="mb-1">
+                                    <div class="row">
+                                      <!-- Первый столбец -->
+                                      <div class="col-6">
+                                        <div class="d-flex justify-content-between align-items-baseline">
+                                          <div class="form-check custom-checkbox" id="methods-cleaning">
+                                            <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                                            <label class="form-check-label fs-5 mb-1" for="oos-cleaning">WAPE, %</label>
+                                          </div>
+                                          <select class="form-select form-select-sm w-50 fs-5 mb-1 p-2">
+                                            <option>Высокий</option>
+                                            <option>Средний</option>
+                                            <option>Низкий</option>
+                                          </select>
                                         </div>
-                                        <select class="form-select form-select-sm w-50 fs-5 mb-1 p-2">
-                                          <option>Высокий</option>
-                                          <option>Средний</option>
-                                          <option>Низкий</option>
-                                        </select>
+                                      </div>
+                                
+                                      <!-- Второй столбец -->
+                                      <div class="col-6">
+                                        <div class="d-flex justify-content-between align-items-baseline">
+                                          <div class="form-check custom-checkbox" id="methods-cleaning">
+                                            <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                                            <label class="form-check-label fs-5" for="oos-cleaning">Вариация, %</label>
+                                          </div>
+                                          <select class="form-select form-select-sm w-50 fs-5 mb-1 p-2">
+                                            <option>Высокий</option>
+                                            <option>Средний</option>
+                                            <option>Низкий</option>
+                                          </select>
+                                        </div>
                                       </div>
                                     </div>
-                              
-                                    <!-- Второй столбец -->
-                                    <div class="col-6">
-                                      <div class="d-flex justify-content-between align-items-baseline">
-                                        <div class="form-check custom-checkbox" id="methods-cleaning">
-                                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                                          <label class="form-check-label fs-5" for="oos-cleaning">Вариация, %</label>
+                                  </li>
+                                
+                                  <li class="mb-1">
+                                    <div class="row">
+                                      <!-- Первый столбец -->
+                                      <div class="col-6">
+                                        <div class="d-flex justify-content-between align-items-baseline">
+                                          <div class="form-check custom-checkbox" id="methods-cleaning">
+                                            <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                                            <label class="form-check-label fs-5" for="oos-cleaning">Доля объёма, %</label>
+                                          </div>
+                                          <select class="form-select form-select-sm w-50 fs-5 mb-1 p-2">
+                                            <option>Высокий</option>
+                                            <option>Средний</option>
+                                            <option>Низкий</option>
+                                          </select>
                                         </div>
-                                        <select class="form-select form-select-sm w-50 fs-5 mb-1 p-2">
-                                          <option>Высокий</option>
-                                          <option>Средний</option>
-                                          <option>Низкий</option>
-                                        </select>
+                                      </div>
+                                
+                                      <!-- Второй столбец -->
+                                      <div class="col-6">
+                                        <div class="d-flex justify-content-between align-items-baseline">
+                                          <div class="form-check custom-checkbox" id="methods-cleaning">
+                                            <input class="form-check-input" type="checkbox" id="oos-cleaning" />
+                                            <label class="form-check-label fs-5" for="oos-cleaning">Доля позиции, %</label>
+                                          </div>
+                                          <select class="form-select form-select-sm w-50 fs-5 mb-3 p-2">
+                                            <option>Высокий</option>
+                                            <option>Средний</option>
+                                            <option>Низкий</option>
+                                          </select>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </li>
-                              
-                                <li class="mb-1">
-                                  <div class="row">
-                                    <!-- Первый столбец -->
-                                    <div class="col-6">
-                                      <div class="d-flex justify-content-between align-items-baseline">
-                                        <div class="form-check custom-checkbox" id="methods-cleaning">
-                                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                                          <label class="form-check-label fs-5" for="oos-cleaning">Доля объёма, %</label>
-                                        </div>
-                                        <select class="form-select form-select-sm w-50 fs-5 mb-1 p-2">
-                                          <option>Высокий</option>
-                                          <option>Средний</option>
-                                          <option>Низкий</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                              
-                                    <!-- Второй столбец -->
-                                    <div class="col-6">
-                                      <div class="d-flex justify-content-between align-items-baseline">
-                                        <div class="form-check custom-checkbox" id="methods-cleaning">
-                                          <input class="form-check-input" type="checkbox" id="oos-cleaning" />
-                                          <label class="form-check-label fs-5" for="oos-cleaning">Доля позиции, %</label>
-                                        </div>
-                                        <select class="form-select form-select-sm w-50 fs-5 mb-3 p-2">
-                                          <option>Высокий</option>
-                                          <option>Средний</option>
-                                          <option>Низкий</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </li>
-                              </ul>
-
-                            <div class="form-check custom-checkbox mb-3 align-items-baseline">
-                            <input class="form-check-input" type="checkbox" id="depth-cleaning" />
-                            <label class="form-check-label fw-bold fs-4" for="depth-cleaning">Глубина оптимизации</label>
-                            </div>
-
-                            <div class="mb-1 w-100">
-                            <select class="form-select form-select-sm w-100 fs-5 mb-3 p-2">
-                            <option>Валовая оценка</option>
-                            <option>Категория</option>
-                            <option>Ценовой сегмент</option>
-                            <option>ABC</option>
-                            <option>XYZ</option>
-                            </select>
-                            </div>
-
-                            <button class="btn btn-primary-pr w-50">Сохранить</button>
-                            </div>
-          </div>///
+                                  </li>
+                                </ul>
+  
+                              <div class="form-check custom-checkbox mb-3 align-items-baseline">
+                              <input class="form-check-input" type="checkbox" id="depth-cleaning" />
+                              <label class="form-check-label fw-bold fs-4" for="depth-cleaning">Глубина оптимизации</label>
+                              </div>
+  
+                              <div class="mb-1 w-100">
+                              <select class="form-select form-select-sm w-100 fs-5 mb-3 p-2">
+                              <option>Валовая оценка</option>
+                              <option>Категория</option>
+                              <option>Ценовой сегмент</option>
+                              <option>ABC</option>
+                              <option>XYZ</option>
+                              </select>
+                              </div>
+  
+                              <button class="btn btn-primary-pr w-50">Сохранить</button>
+                              </div>
+            </div>///
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  

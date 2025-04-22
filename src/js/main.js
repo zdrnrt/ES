@@ -1,3 +1,4 @@
+import * as XLSX from 'xlsx';
 
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +16,11 @@ import './modules/norming'
 import './modules/normingChart'
 import './modules/mapSetting'
 import './modules/forecastParameters'
+import './modules/seasonalityGlobalChecked'
+import './modules/seasonalityOpen'
+import './modules/seasonality_visualLines'
+import './modules/parametersGlobalChecked'
+import './modules/regularGlobalChecked'
 import './modules/forecast'
 import './modules/driver'
 import './modules/driverChart'
@@ -26,7 +32,179 @@ import './modules/controlChart'
 
 import './modules/clasteringCreate'
 
+//REG ASSORT********
+window.loadAndFilterData = function () {
+  console.log("Функция работает!");
+  window.saveGlobalParametersRegular = function () {
+    let currentData = JSON.parse(localStorage.getItem('globalParameters'));
+    if (!currentData) {
+      currentData = {};
+    }
+    const regularAssortMethodForecast = document.getElementById('regular_assort_method');
+    const regular_method = regularAssortMethodForecast.value;
+    console.log('Выбранный метод прогноза:', regular_method);
 
+    currentData['методы прогноза'] = regular_method;
+    localStorage.setItem('globalParameters', JSON.stringify(currentData));
+  }
+  window.saveGlobalParametersRegular();
+
+  // Получаем параметры из localStorage
+  const parameters = JSON.parse(localStorage.getItem('globalParameters'));
+  const iframe = document.getElementById('tb_regular_assort_results');
+  // Проверяем наличие ключей и выводим соответствующие сообщения
+  if (!parameters || !parameters['очистка от выбросов']) {
+    iframe.contentDocument.body.innerHTML = '<p>Выберите глобальные параметры</p>';
+    return; // Прекращаем выполнение функции
+  }
+  if (!parameters['сезонность']) {
+    iframe.contentDocument.body.innerHTML = '<p>Выберите метод расчета сезонности</p>';
+    return; // Прекращаем выполнение функции
+  }
+  window.filterData = function (data) {
+    const parameters = JSON.parse(localStorage.getItem('globalParameters'));
+    return data.filter(row => {
+      return Object.keys(parameters).every(key => {
+        if (row[key] !== undefined) {
+          return row[key].toString().toLowerCase() === parameters[key].toString().toLowerCase();   // Приведение к нижнему регистру для независимости от регистра
+        }
+        return true;
+      });
+    });
+  };
+
+  window.displayTable = function (data) {
+    const iframe = document.getElementById('tb_regular_assort_results');
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+    iframeDocument.body.innerHTML = '';
+
+
+
+    // Добавление стилей
+    const style = document.createElement('style');
+    style.textContent =
+      `
+  table {
+         width: 100%;
+  border-collapse: collapse;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  background-color: white;
+  border-radius: 8px; /* Закругляем углы */
+  overflow: hidden; /* Скрываем острые углы у ячеек */
+  border-style: hidden; /* Скрываем внешнюю границу таблицы (опционально) */
+  box-shadow: 0 0 0 1px #E0E0E0; /* Восстанавливаем видимость границы (опционально) */
+  }
+  th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border: 1px solid #E0E0E0;
+  }
+  th {
+      background-color: #F1F2FF;
+      color: #333;
+      font-weight: 600;
+      border-bottom: 2px solid #D0D0D0;
+  }
+  tr {
+      background-color: white;
+  }
+  tr:hover {
+      background-color: #F8F8F8;
+  }
+`
+      ;
+    iframeDocument.head.appendChild(style);
+    const table = iframeDocument.createElement('table');
+    table.innerHTML = ''; // Очистка предыдущего содержимого
+    if (data.length === 0) {
+      table.innerHTML = '<tr><td colspan="100%">Нет данных для отображения</td></tr>';
+      iframeDocument.body.appendChild(table);
+      return;
+    }
+
+    // Определяем желаемый порядок
+    const desiredOrder = [
+      'WAPE, %',
+      'BIAS, %',
+      'Кол-во позиций с прогнозом',
+      'Всего позиций с продажами',
+      'Доля, %',
+      'недопрогноз, %',
+      'перепрогноз, %',
+      'Объем прогноза, шт',
+      'Объем продаж, шт',
+      'Доля, %2'
+    ];
+    // Сортируем данные по желаемому порядку
+    data.sort((a, b) => {
+      const indexA = desiredOrder.indexOf(a['МЕРЫ']); // Приводим к нижнему регистру
+      const indexB = desiredOrder.indexOf(b['МЕРЫ']);
+
+      // Сравниваем индексы
+      return indexA - indexB;
+    });
+
+    // Создание заголовков, начиная с 7-го столбца
+    const headers = Object.keys(data[0]);
+    const headerRow = document.createElement('tr');
+    for (let i = 6; i < headers.length; i++) { // Начинаем с 7-го столбца (индекс 6)
+      const th = document.createElement('th');
+      th.textContent = headers[i];
+      headerRow.appendChild(th);
+    }
+    table.appendChild(headerRow);
+    const percentColumns = ['WAPE, %', 'BIAS, %', 'Доля, %', 'Доля, %2', 'недопрогноз, %', 'перепрогноз, %'];
+
+    // Заполнение таблицы данными, начиная с 7-го столбца
+    data.forEach(row => {
+      const tr = document.createElement('tr');
+      for (let i = 6; i < headers.length; i++) { // Начинаем с 7-го столбца (индекс 6)
+        const td = document.createElement('td');
+        let cellValue = row[headers[i]];
+
+        if (typeof cellValue === 'number') {
+          // Проверяем, есть ли соответствующее название в столбце "МЕРЫ"
+          if (row['МЕРЫ'] && percentColumns.includes(row['МЕРЫ'])) {
+            cellValue = (cellValue * 100).toFixed(0) + '%'; // Преобразование в процент
+          } else {
+            cellValue = cellValue.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });// Округл, разделение на локали до без знаков после запятой для остальных чисел
+          }
+        }
+        td.textContent = cellValue;
+        tr.appendChild(td);
+      }
+      table.appendChild(tr);
+    });
+    iframeDocument.body.appendChild(table);
+  };
+
+  // const url = './public/images/users/regAssort2.xlsx';// ссылки для локального компа
+  fetch('./public/images/demo_file/regAssort3.xlsx') // ссылки для локального компа
+    //const url = '   https://raw.githubusercontent.com/Kujavia/SputnikPro_test_2_2/master/public/images/demo_file/regAssort3.xlsx';
+    //fetch('   https://raw.githubusercontent.com/Kujavia/SputnikPro_test_2_2/master/public/images/demo_file/regAssort3.xlsx')
+    //fetch('./public/images/demo_file/regAssort3.xlsx')// ссылки для локального компа
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Сеть не отвечает');
+      }
+      return response.arrayBuffer();
+    })
+    .then(data => {
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[firstSheetName];
+      const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+      // console.log(jsonData); // Проверка загруженных данных
+
+      const filteredData = window.filterData(jsonData);
+      window.displayTable(filteredData);
+    })
+    .catch(error => {
+      console.error('Ошибка загрузки файла:', error);
+    });
+};
 
 //const csvUrl = './public/images/map_start.csv';
 
@@ -271,3 +449,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+
+
+
+

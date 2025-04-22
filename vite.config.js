@@ -16,6 +16,7 @@ export default defineConfig({
 				control: resolve(__dirname, 'src/html/control.html'),
 				priority: resolve(__dirname, 'src/html/priority.html'),
 				forecast: resolve(__dirname, 'src/html/forecast.html'),
+				seasonality: resolve(__dirname, 'src/html/seasonality.html'),
 				parameters: resolve(__dirname, 'src/html/forecastParameters.html'),
 				modelingResult: resolve(__dirname, 'src/html/modelingResult.html'),
 				mapSetting: resolve(__dirname, 'src/html/mapSetting.html'),
