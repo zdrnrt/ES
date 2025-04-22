@@ -180,9 +180,9 @@ window.loadAndFilterData = function () {
   };
 
   // const url = './public/images/users/regAssort2.xlsx';// ссылки для локального компа
-  fetch('./public/images/demo_file/regAssort3.xlsx') // ссылки для локального компа
-    //const url = '   https://raw.githubusercontent.com/Kujavia/SputnikPro_test_2_2/master/public/images/demo_file/regAssort3.xlsx';
-    //fetch('   https://raw.githubusercontent.com/Kujavia/SputnikPro_test_2_2/master/public/images/demo_file/regAssort3.xlsx')
+  //fetch('./public/images/demo_file/regAssort3.xlsx') // ссылки для локального компа
+  //const url = '   https://raw.githubusercontent.com/Kujavia/SputnikPro_test_2_2/master/public/images/demo_file/regAssort3.xlsx';
+  fetch('   https://raw.githubusercontent.com/Kujavia/ES/master/public/images/demo_file/regAssort3.xlsx')
     //fetch('./public/images/demo_file/regAssort3.xlsx')// ссылки для локального компа
     .then(response => {
       if (!response.ok) {

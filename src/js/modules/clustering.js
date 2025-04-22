@@ -71,7 +71,7 @@ window.clusteringChartDraw = function () {
   var clusterBlue = generateOvalCluster(1.5, 5, 360, 1.5, 4);
   var clusterGreen = generateOvalCluster(3, 7, 384, 1, 4);
   var clusterYellow = generateOvalCluster(4.5, 3, 264, 2, 1.5);
-  var clusterGrey = generateOvalCluster(3.5, 1, 325, 1.5, 1.5);
+  var clusterGrey = generateOvalCluster(3.5, 1, 328, 1.5, 1.5);
   var clusterMer = generateOvalCluster(4.7, 7, 556, 1.2, 4);
 
   var options = {
@@ -97,7 +97,7 @@ window.clusteringChartDraw = function () {
       },
       y: {
         min: 0,
-        max: 12,
+        max: 15,
         title: {
           display: true,
           text: 'Ось Y'

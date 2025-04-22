@@ -54,14 +54,14 @@ window.updateChartNorm = function () {
             labels: labels,
             datasets: [
                 {
-                    label: 'Продажи',
+                    label: 'Продажи факт',
                     data: salesData,
                     backgroundColor: 'rgba(255, 206, 86, 0.2)',
                     borderColor: 'rgba(255, 206, 86, 1)',
                     borderWidth: 1
                 },
                 {
-                    label: 'Нормы',
+                    label: 'Норма продаж',
                     data: normData,
                     backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     borderColor: 'rgba(153, 102, 255, 1)',
@@ -79,9 +79,9 @@ window.updateChartNorm = function () {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Факт и норма продаж', // Название графика
+                    text: 'Объем продаж, дал', // Название графика
                     font: {
-                        size: 16
+                        size: 18
                     }
                 }
             },
