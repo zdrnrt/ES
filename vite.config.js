@@ -20,6 +20,8 @@ export default defineConfig({
 				parameters: resolve(__dirname, 'src/html/forecastParameters.html'),
 				modelingResult: resolve(__dirname, 'src/html/modelingResult.html'),
 				mapSetting: resolve(__dirname, 'src/html/mapSetting.html'),
+				scenariosSetting: resolve(__dirname, 'src/html/scenariosSetting.html'),
+				scenariosAnalysis: resolve(__dirname, 'src/html/scenariosAnalysis.html'),
 			}
 		}
 	}

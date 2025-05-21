@@ -1,0 +1,236 @@
+<div class="page__content page-content data-page">
+  <header class="page-content__header border-bottom">
+    <h1>Сценарии: Анализ</h1>
+  </header>
+  <div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <select name="" id="type" class="form-select d-block">
+          <option value="tt">Товарный запас ТТ</option>
+          <option value="rc">Товарный запас РЦ</option>
+          <option value="represent">Представленность</option>
+        </select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <div class="column">
+          <header class="column__header">Экстренный</header>
+          <h2 class="mb-3">Достижение цели - <span class="text-danger">Апрель</span></h2>
+          <canvas id="fast"></canvas>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <header class="column__header">Плановый</header>
+          <h2 class="mb-3">Достижение цели - <span class="text-danger">Май</span></h2>
+          <canvas id="middle"></canvas>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <header class="column__header">Умеренный</header>
+          <h2 class="mb-3">Достижение цели - <span class="text-danger">Июнь</span></h2>
+          <canvas id="normal"></canvas>
+        </div>
+      </div>
+    </div>
+    <div id="info" class="scenarioAnalysis row mb-3" data-state="tt">
+      <div class="col-4">
+        <div class="column">
+          <header class="column__header"><h2>Экстренный</h2></header>
+          <div class="mb-3" data-info="tt">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Потеря маржи - <span class="fw-bold">450 000 руб</span></li>
+              <li class="mb-1">Доля распродажи - <span class="fw-bold">15%</span></li>
+              <li class="mb-1">Прогноз дефицита - <span class="fw-bold">10%</span></li>
+              <li class="mb-1">Снижение заказа у поставщиков - <span class="fw-bold">24</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">14 дн</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">100</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">60</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">30</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">10</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3" data-info="rc">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Потеря маржи - <span class="fw-bold">450 000 руб</span></li>
+              <li class="mb-1">Доля распродажи - <span class="fw-bold">15%</span></li>
+              <li class="mb-1">Прогноз дефицита - <span class="fw-bold">10%</span></li>
+              <li class="mb-1">Снижение заказа у поставщиков - <span class="fw-bold">24</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">14 дн</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">100</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">60</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">30</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">10</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3" data-info="represent">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Рост закупки - <span class="fw-bold">784 000 руб</span></li>
+              <li class="mb-1">Увеличение заказа у поставщика - <span class="fw-bold">34</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">30 дн</span></li>
+              <li class="mb-1">Нагрузка на ТТ - <span class="fw-bold">150</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">98</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">58</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">30</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">10</span></li>
+              </ul>
+            </div>
+          </div>
+          <button class="btn btn-primary btn--blank"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Выбрать</button>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <header class="column__header"><h2>Плановый</h2></header>
+          <div class="mb-3" data-info="tt">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Потеря маржи - <span class="fw-bold">255 000 руб</span></li>
+              <li class="mb-1">Доля распродажи - <span class="fw-bold">10%</span></li>
+              <li class="mb-1">Прогноз дефицита - <span class="fw-bold">7%</span></li>
+              <li class="mb-1">Снижение заказа у поставщиков - <span class="fw-bold">15</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">7 дн</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">90</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">50</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">20</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">20</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3" data-info="rc">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Потеря маржи - <span class="fw-bold">255 000 руб</span></li>
+              <li class="mb-1">Доля распродажи - <span class="fw-bold">10%</span></li>
+              <li class="mb-1">Прогноз дефицита - <span class="fw-bold">7%</span></li>
+              <li class="mb-1">Снижение заказа у поставщиков - <span class="fw-bold">15</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">7 дн</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">90</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">50</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">20</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">20</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3" data-info="represent">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Рост закупки - <span class="fw-bold">568 000 руб</span></li>
+              <li class="mb-1">Увеличение заказа у поставщика - <span class="fw-bold">25</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">20 дн</span></li>
+              <li class="mb-1">Нагрузка на ТТ - <span class="fw-bold">110</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">80</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">45</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">15</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">20</span></li>
+              </ul>
+            </div>
+          </div>
+            <button class="btn btn-primary btn--blank"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Выбрать</button>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <header class="column__header"><h2>Умеренный</h2></header>
+          <div class="mb-3" data-info="tt">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Потеря маржи - <span class="fw-bold">155 000 руб</span></li>
+              <li class="mb-1">Доля распродажи - <span class="fw-bold">8%</span></li>
+              <li class="mb-1">Прогноз дефицита - <span class="fw-bold">5%</span></li>
+              <li class="mb-1">Снижение заказа у поставщиков - <span class="fw-bold">5</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">0 дн</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">70</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">30</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">15</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">25</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3" data-info="rc">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Потеря маржи - <span class="fw-bold">155 000 руб</span></li>
+              <li class="mb-1">Доля распродажи - <span class="fw-bold">8%</span></li>
+              <li class="mb-1">Прогноз дефицита - <span class="fw-bold">5%</span></li>
+              <li class="mb-1">Снижение заказа у поставщиков - <span class="fw-bold">5</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">0 дн</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">70</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">30</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">15</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">25</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="mb-3" data-info="represent">
+            <div class="mb-4">
+              <div class="mb-3 fw-bold">Показатели:</div>
+              <ul class="scenarios-list">
+              <li class="mb-1">Рост закупки - <span class="fw-bold">310 000 руб</span></li>
+              <li class="mb-1">Увеличение заказа у поставщика - <span class="fw-bold">15</span></li>
+              <li class="mb-1">Неравномерность нагрузки на РЦ -	<span class="fw-bold">0 дн</span></li>
+              <li class="mb-1">Нагрузка на ТТ - <span class="fw-bold">0</span></li>
+            </ul>
+            </div>
+            <div>
+              <div class="mb-3 fw-bold">Количество задач - <span class="text-danger fw-bold">50</span></div>
+              <ul class="scenarios-list">
+                <li class="pb-1">Срочных - <span class="text-danger fw-bold">10</span></li>
+                <li class="pb-1">Средних - <span class="text-danger fw-bold">15</span></li>
+                <li class="pb-1">Регулярных - <span class="text-danger fw-bold">25</span></li>
+              </ul>
+            </div>
+          </div>
+          <button class="btn btn-primary btn--blank"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Выбрать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+.scenarioAnalysis{
+  [data-info]{
+    display: none;
+  }
+  &[data-state="tt"] [data-info="tt"]{
+    display: block;
+  }
+  &[data-state="rc"] [data-info="rc"]{
+    display: block;
+  }
+  &[data-state="represent"] [data-info="represent"]{
+    display: block;
+  }
+
+}

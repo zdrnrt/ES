@@ -1,0 +1,445 @@
+<div class="page__content page-content data-page">
+  <header class="page-content__header border-bottom">
+    <h1>Сценарии: Настройка</h1>
+  </header>
+  <div>
+    <div class="row mb-3">
+      <div class="col-4">
+        <div class="column">
+          <h2 class="pb-2 mb-3 border-bottom">Экстренный</h2>
+          <div class="mb-3 h4 fw-bold">Сроки выполнения задач</div>
+          <form class="scenariosForm">
+            <div class="mb-3">
+              <label for="" class="form-label">Срочные</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="1 день">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Средние</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="2 дня">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Регулярные</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="3 дня">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Лимит задач</label>
+              <input type="number" class="form-control" id="" placeholder="0">
+            </div>
+            <div class="mb-3 h4 fw-bold">Настройка приоритетов</div>
+            <!-- <div class="row align-items-center mb-3">
+              <div class="col-6">Настройка приоритетов</div>
+              <div class="col-6"><button class="btn btn-outline-primary" data-config-title="Настройка приоритетов" data-config="priority" type="button">Настроить</button></div>
+              <input type="text" hidden name="priority">
+            </div> -->
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Ассортимент</div>
+              <div class="col-6"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAssortment">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Показатель</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAssortment">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Подразделение</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalSubdivision">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Торговая точка</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalPoint">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="d-flex gap-3">
+              <!-- <button class="btn btn-primary scenariosForm__edit" type="button">Редактировать</button> -->
+              <button class="btn btn-primary scenariosForm__submit btn--blank" type="submit"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Сохранить</button>
+            </div>
+            </form>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <h2 class="pb-2 mb-3 border-bottom">Плановый</h2>
+          <div class="mb-3 h4 fw-bold">Сроки выполнения задач</div>
+          <form class="scenariosForm">
+            <div class="mb-3">
+              <label for="" class="form-label">Срочные</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="1 день">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Средние</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="2 дня">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Регулярные</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="3 дня">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Лимит задач</label>
+              <input type="number" class="form-control" id="" placeholder="0">
+            </div>
+            <div class="mb-3 h4 fw-bold">Настройка приоритетов</div>
+            <!-- <div class="row align-items-center mb-3">
+              <div class="col-6">Настройка приоритетов</div>
+              <div class="col-6"><button class="btn btn-outline-primary" type="button">Настроить</button></div>
+            </div> -->
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Ассортимент</div>
+              <div class="col-6"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAssortment">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Показатель</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAssortment">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Подразделение</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalSubdivision">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Торговая точка</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalPoint">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="d-flex gap-3">
+              <!-- <button class="btn btn-primary scenariosForm__edit" type="button">Редактировать</button> -->
+              <button class="btn btn-primary scenariosForm__submit btn--blank" type="submit"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Сохранить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="column">
+          <h2 class="pb-2 mb-3 border-bottom">Умеренный</h2>
+          <div class="mb-3 h4 fw-bold">Сроки выполнения задач</div>
+          <form >
+            <div class="mb-3">
+              <label for="" class="form-label">Срочные</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="1 день">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Средние</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="2 дня">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Регулярные</label>
+              <input type="number" class="form-control" id="" min="0" placeholder="3 дня">
+            </div>
+            <div class="mb-3">
+              <label for="" class="form-label">Лимит задач</label>
+              <input type="number" class="form-control" id="" placeholder="0">
+            </div>
+            <div class="mb-3 h4 fw-bold">Настройка приоритетов</div>
+            <!-- <div class="row align-items-center mb-3">
+              <div class="col-6">Настройка приоритетов</div>
+              <div class="col-6"><button class="btn btn-outline-primary" type="button">Настроить</button></div>
+            </div> -->
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Ассортимент</div>
+              <div class="col-6"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAssortment">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Показатель</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalAssortment">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Подразделение</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalSubdivision">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="row align-items-center mb-3">
+              <div class="col-6">Торговая точка</div>
+              <div class="col"><button class="btn btn-outline-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalPoint">Настроить</button></div>
+              <input type="text" hidden name="">
+            </div>
+            <div class="d-flex gap-3">
+              <!-- <button class="btn btn-primary scenariosForm__edit" type="button">Редактировать</button> -->
+              <button class="btn btn-primary scenariosForm__submit btn--blank" type="submit"><span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Сохранить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalAssortment" tabindex="-1" aria-labelledby="modalAssortmentLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAssortmentLabel">Ассортимент</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5">
+        <div data-id="list">
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">1</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Группа А">Группа А</option>
+            <option value="Промо">Промо</option>
+            <option value="Новинка">Новинка</option>
+            <option value="Товар KVI">Товар KVI</option>
+            <option value="Товар ТОП 100">Товар ТОП 100</option>
+            <option value="Фреш">Фреш</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">2</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Группа А">Группа А</option>
+            <option value="Промо">Промо</option>
+            <option value="Новинка">Новинка</option>
+            <option value="Товар KVI">Товар KVI</option>
+            <option value="Товар ТОП 100">Товар ТОП 100</option>
+            <option value="Фреш">Фреш</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">3</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Группа А">Группа А</option>
+            <option value="Промо">Промо</option>
+            <option value="Новинка">Новинка</option>
+            <option value="Товар KVI">Товар KVI</option>
+            <option value="Товар ТОП 100">Товар ТОП 100</option>
+            <option value="Фреш">Фреш</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">4</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Группа А">Группа А</option>
+            <option value="Промо">Промо</option>
+            <option value="Новинка">Новинка</option>
+            <option value="Товар KVI">Товар KVI</option>
+            <option value="Товар ТОП 100">Товар ТОП 100</option>
+            <option value="Фреш">Фреш</option>
+          </select>
+        </div>
+      </div>
+    </div>
+      <div>
+        <button class="btn btn-outline-primary" data-id="add">Добавить</button>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" _type="submit" class="btn btn-primary" data-bs-dismiss="modal">Применить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalIndicator" tabindex="-1" aria-labelledby="modalIndicatorLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalIndicatorLabel">Показатель</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5">
+        <div data-id="list">
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">1</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Упущенная продажа">Упущенная продажа</option>
+            <option value="Маржа">Маржа</option>
+            <option value="Списание">Списание</option>
+            <option value="Продажа, шт">Продажа, шт</option>
+            <option value="Продажа, руб">Продажа, руб</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">2</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Упущенная продажа">Упущенная продажа</option>
+            <option value="Маржа">Маржа</option>
+            <option value="Списание">Списание</option>
+            <option value="Продажа, шт">Продажа, шт</option>
+            <option value="Продажа, руб">Продажа, руб</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">3</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Упущенная продажа">Упущенная продажа</option>
+            <option value="Маржа">Маржа</option>
+            <option value="Списание">Списание</option>
+            <option value="Продажа, шт">Продажа, шт</option>
+            <option value="Продажа, руб">Продажа, руб</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">4</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Упущенная продажа">Упущенная продажа</option>
+            <option value="Маржа">Маржа</option>
+            <option value="Списание">Списание</option>
+            <option value="Продажа, шт">Продажа, шт</option>
+            <option value="Продажа, руб">Продажа, руб</option>
+          </select>
+        </div>
+      </div>
+    </div>
+      <div>
+        <button class="btn btn-outline-primary" data-id="add">Добавить</button>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" _type="submit" class="btn btn-primary" data-bs-dismiss="modal">Применить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalSubdivision" tabindex="-1" aria-labelledby="modalSubdivisionLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalSubdivisionLabel">Подраздленеие</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5">
+        <div data-id="list">
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">1</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Товародвижение">Товародвижение</option>
+            <option value="Прогнозирование">Прогнозирование</option>
+            <option value="Логистика">Логистика</option>
+            <option value="Операции">Операции</option>
+            <option value="Коммерция">Коммерция</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">2</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Товародвижение">Товародвижение</option>
+            <option value="Прогнозирование">Прогнозирование</option>
+            <option value="Логистика">Логистика</option>
+            <option value="Операции">Операции</option>
+            <option value="Коммерция">Коммерция</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">3</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Товародвижение">Товародвижение</option>
+            <option value="Прогнозирование">Прогнозирование</option>
+            <option value="Логистика">Логистика</option>
+            <option value="Операции">Операции</option>
+            <option value="Коммерция">Коммерция</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">4</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Товародвижение">Товародвижение</option>
+            <option value="Прогнозирование">Прогнозирование</option>
+            <option value="Логистика">Логистика</option>
+            <option value="Операции">Операции</option>
+            <option value="Коммерция">Коммерция</option>
+          </select>
+        </div>
+      </div>
+    </div>
+      <div>
+        <button class="btn btn-outline-primary" data-id="add">Добавить</button>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" _type="submit" class="btn btn-primary" data-bs-dismiss="modal">Применить</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalPoint" tabindex="-1" aria-labelledby="modalPointLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPointLabel">Торговая точка</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body fs-5">
+        <div data-id="list">
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">1</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Высокий товарооборот">Высокий товарооборот</option>
+            <option value="Низкий товарооборот ">Низкий товарооборот</option>
+            <option value="Список ТОП">Список ТОП</option>
+            <option value="Спец список">Спец список</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">2</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Высокий товарооборот">Высокий товарооборот</option>
+            <option value="Низкий товарооборот ">Низкий товарооборот</option>
+            <option value="Список ТОП">Список ТОП</option>
+            <option value="Спец список">Спец список</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">3</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Высокий товарооборот">Высокий товарооборот</option>
+            <option value="Низкий товарооборот ">Низкий товарооборот</option>
+            <option value="Список ТОП">Список ТОП</option>
+            <option value="Спец список">Спец список</option>
+          </select>
+        </div>
+      </div>
+        <div class="row mb-3 align-items-center" data-id="filter">
+        <div class="col-3">Приоритет <span data-id="order">4</span></div>
+        <div class="col-9">
+          <select name="" id="" class="form-select d-block">
+            <option value="Высокий товарооборот">Высокий товарооборот</option>
+            <option value="Низкий товарооборот ">Низкий товарооборот</option>
+            <option value="Список ТОП">Список ТОП</option>
+            <option value="Спец список">Спец список</option>
+          </select>
+        </div>
+      </div>
+    </div>
+      <div>
+        <button class="btn btn-outline-primary" data-id="add">Добавить</button>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" _type="submit" class="btn btn-primary" data-bs-dismiss="modal">Применить</button>
+      </div>
+    </div>
+  </div>
+</div>

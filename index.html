@@ -158,6 +158,19 @@
               />
               <div class="nav-item__title">Кластеризация</div>
             </button>
+            <button class="aside-nav__item nav-item d-flex justify-content-start align-items-center collapsed" data-bs-toggle="collapse" data-bs-target="#scenarios-nav-collapse" aria-expanded="true" aria-controls="nav-collapse">
+            <img src="./public/images/icons/table.svg" alt="Сценарии" class="nav-item__icon">
+            <div class="nav-item__title">Сценарии</div>
+            <img src="./public/images/icons/angle.svg" class="nav-item__angle">
+          </button>
+          <div id="scenarios-nav-collapse" class="collapse aside-nav__item aside-nav__item--collapse" data-bs-parent="nav">
+            <button class="aside-nav__item nav-item d-flex justify-content-start align-items-center" onclick="tabChange(this); scenariosSettingOpen();">
+              <div class="nav-item__title">Настройка</div>
+            </button>
+            <button class="aside-nav__item nav-item d-flex justify-content-start align-items-center" onclick="tabChange(this); scenariosAnalysisOpen();">
+              <div class="nav-item__title">Анализ</div>
+            </button>
+          </div>
             <button
               class="aside-nav__item nav-item d-flex justify-content-start align-items-center"
               onclick="tabChange(this); normingOpen();"

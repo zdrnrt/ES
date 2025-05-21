@@ -1,0 +1,19 @@
+.scenariosForm{
+  // &--edit{
+  //   background: red;
+  //   .scenariosForm{
+  //     &__edit{
+  //       display: none;
+  //     }
+  //     &__submit{
+  //       display: block;
+  //     }
+  //   }
+  // }
+  &__edit{
+    // display: block;
+  }
+  &__submit{
+    // display: none;
+  }
+}

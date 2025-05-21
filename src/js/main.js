@@ -33,6 +33,9 @@ import './modules/controlChart'
 
 import './modules/clasteringCreate'
 
+import './modules/scenariosAnalysis'
+import './modules/scenariosSetting'
+
 //REG ASSORT********
 window.loadAndFilterData = function () {
   console.log("Функция работает!");
