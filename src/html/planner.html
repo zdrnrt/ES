@@ -1,0 +1,318 @@
+<div class="page__content page-content data-page">
+  <header class="page-content__header">
+    <p>Планировщик</p>
+  </header>
+
+  <div class="row border border-1 rounded-4 mx-1 shadow-sm">
+    <!-- Левый блок: Агрегация выходных данных -->
+    <div class="col-md-6 p-0">
+      <!-- <div class="card"> -->
+      <div class="card-body">
+        <h5 class="card-title block_title mb-3">Какое-то название</h5>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Наименование</label
+          >
+          <input
+            id="planner__scenarioName"
+            type="text"
+            value="Расчёт для плана 1"
+            checked
+            class="form-control mb-0"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text">
+            Внесите название для Вашего сценария планировщика.
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="planner__block" class="form-label">Блок</label>
+          <select id="planner__block" class="form-select">
+            <option value="regular_assortment" checked>
+              Регулярный ассортимент
+            </option>
+            <option value="promo">Промо</option>
+            <option value="news_product">Новинки</option>
+            <option value="summary_plan">Итого план</option>
+          </select>
+        </div>
+        <div class="mb-1">
+          <label for="regular_assort__aggregation-scu" class="form-label"
+            >Сценарий настройки</label
+          >
+          <select
+            id="planner__scenarioCustom"
+            class="form-select mb-1"
+          >
+            <option value="not_selected">Сценарий 1</option>
+            <option value="option2">Сценарий 2</option>
+          </select>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+
+    <!-- Правый блок: Метод прогнозирования и сценарий расчета -->
+    <div class="col-md-6 d-flex flex-column p-0">
+      <!-- <div class="card"> -->
+      <div class="card-body">
+        <!-- <h5 class="card-title block_title mb-3">
+          Метод прогнозирования и сценарий расчета
+        </h5> -->
+
+        <!--
+        <div class="mb-1">
+          <label for="seasonality_scenario">Сценарий расчета</label>
+          <select
+            id="seasonality_scenario"
+            placeholder="Выберите из списка"
+            class="form-select"
+          >
+            <option value="" disabled selected>Выберите из списка</option>
+            <option value="2">Сценарий 1</option>
+            <option value="2">Сценарий 2</option>
+          </select>
+        </div>
+        -->
+
+        <div class="d-flex justify-content-start gap-4">
+          <!--
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            style="width: 31%"
+            onclick="scenariosSaveOpen();"
+          >
+            Сохранить сценарий
+          </button>
+          -->
+          <button
+            style="width: 31%"
+            type="button"
+            class="btn btn-outline-secondary"
+            id="planner_buttonAddIframe"
+            onclick="planner_addData()"
+          >
+            Добавить
+          </button>
+          <button
+            style="width: 31%"
+            type="button"
+            class="btn btn-primary"
+            onclick="planner_selectScenarioRepeat()"
+            id="planner_settingRepeat"
+          >
+            Настройка повторения
+          </button>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+  <div class="row border border-1 rounded-4 mx-1 shadow-sm mt-4 p-3">
+    <!-- Заголовок -->
+    <div class="d-flex justify-content-between align-items-start w-100">
+      <p class="fw-bold mb-0 fs-5">Аналитические показатели</p>
+      <!-- <a
+        href="#"
+      >
+        Скачать таблицу
+      </a> -->
+    </div>
+
+    <!-- iframe -->
+    <iframe
+      id="planner_Iframe"
+      src=""
+      class="mt-3 w-100"
+      style="height: 400px; border: none"
+    ></iframe>
+  </div>
+</div>
+
+<!-- старая версия -->
+<!-- <div class="planner_container">
+  <p>Наименование</p>
+  <input
+    id="planner__scenarioName"
+    type="text"
+    value="Расчёт для плана 1"
+    checked
+  />
+  <p>Блок</p>
+  <select id="planner__block">
+    <option value="regular_assortment" checked>Регулярный ассортимент</option>
+    <option value="promo">Промо</option>
+    <option value="news_product">Новинки</option>
+    <option value="summary_plan">Итого план</option>
+  </select>
+  <p>Сценарий настройки</p>
+  <select id="planner__scenarioCustom">
+    <option value="scheme1">Сценарий 1</option>
+    <option value="scheme2">Сценарий 2</option>
+  </select>
+  <button id="planner_settingRepeat" onclick="planner_selectScenarioRepeat()">
+    Настройка повторения
+  </button>
+  <button id="planner_buttonAddIframe" onclick="planner_addData()">
+    Добавить
+  </button>
+  <iframe id="planner_Iframe" src=""></iframe>
+</div> -->
+
+<!-- МОДАЛЬНОЕ -->
+<div id="planner_weeklyModal" class="planner_modal modal">
+  <div class="planner_modal-content">
+    <span
+      onclick="closeModal('planner_weeklyModal')"
+      style="cursor: pointer; font-size: 24px; font-weight: bold"
+      >&times;</span
+    >
+    <h5 class="planner_ModalRepetition-title">Настройки повторения</h5>
+
+    <div class="planner_intervalRepetition__header">
+      <select
+        id="planner_intervalRepetition__header"
+        onclick="planner_formRepeatSelect()"
+      >
+        <option value="daily">Повторять ежедневно</option>
+        <option value="weekly">Повторять еженедельно</option>
+        <option value="monthly">Повторять ежемесячно</option>
+      </select>
+    </div>
+
+    <p class="planner_visionParagraph">Интервал</p>
+    <div class="planner_intervalWrapper">
+      <input
+        id="planner_intervalPeriodicity"
+        type="number"
+        value="1"
+        min="1"
+        step="1"
+        max="30"
+      />
+      <p class="planner_intervalWrapperDay">день</p>
+    </div>
+
+    <p class="planner_visionParagraph planner_visionParagraphDayOfWeek">
+      Дни повторения
+    </p>
+    <select id="planner_dayOfWeekRepeat">
+      <option value="not_">нет</option>
+      <option value="monday">Понедельник</option>
+      <option value="tuesday">Вторник</option>
+      <option value="wednesday">Среда</option>
+      <option value="thursday">Четверг</option>
+      <option value="friday">Пятница</option>
+      <option value="saturday">Суббота</option>
+      <option value="sunday">Воскресенье</option>
+    </select>
+
+    <!-- Дополнительные -->
+    <div class="select_ModalPlannerMonthlyDay">
+      <select id="planner_dayNumber">
+        <option value="last">последний</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      </select>
+
+      <select id="dayAndWeekMonth">
+        <option value="day">день</option>
+        <option value="monday">Понедельник</option>
+        <option value="tuesday">Вторник</option>
+        <option value="wednesday">Среда</option>
+        <option value="thursday">Четверг</option>
+        <option value="friday">Пятница</option>
+        <option value="saturday">Суббота</option>
+        <option value="sunday">Воскресенье</option>
+      </select>
+    </div>
+    <div id="empty"></div>
+    <!-- Дополнительные -->
+
+    <p class="planner_visionParagraph">Время запуска</p>
+    <input type="time" id="planner_selectedTime" />
+
+    <p class="planner_visionParagraph">Дата начала</p>
+    <input type="date" id="planner_selectedStartDate" />
+
+    <!-- <p class="planner_visionParagraph">Выберите дату окончания</p>
+<input type="date" id="planner_selectedEndDate"> -->
+
+    <p class="planner_ModalRepetition_ending">Окончание</p>
+    <label class="planner_ModalRepetition_endingNever ending_part">
+      <input type="radio" name="options" value="never" /> Никогда
+    </label>
+
+    <label class="ending_part">
+      <input type="radio" name="options" value="number" /> Спустя
+    </label>
+    <label>
+      <input type="number" value="1" id="planner_ModalRepetition__times" />
+      раз</label
+    >
+
+    <label class="ending_part">
+      <input type="radio" name="options" value="date" /> Дата:
+    </label>
+    <input type="date" id="dateInput" class="input-container" /><br />
+
+    <button id="planner_settingModalSave" onclick="saveModalData()">
+      Сохранить
+    </button>
+  </div>
+</div>
+<!-- МОДАЛЬНОЕ -->
+
+<div id="timeModal" class="modal">
+  <div class="modal-content">
+    <span onclick="closeModal('timeModal')" style="cursor: pointer"
+      >&times;</span
+    >
+    <h2>Выберите время</h2>
+    <input type="time" id="selectedTime" />
+    <button onclick="closeModal('timeModal')">Сохранить</button>
+  </div>
+</div>
+
+<div id="checkboxModal" class="modal">
+  <div class="modal-content">
+    <span onclick="closeModal('checkboxModal')" style="cursor: pointer"
+      >&times;</span
+    >
+    <h2>Выберите опции</h2>
+    <label><input type="checkbox" /> Опция 1</label><br />
+    <label><input type="checkbox" /> Опция 2</label><br />
+    <button onclick="closeModal('checkboxModal')">Сохранить</button>
+  </div>
+</div>

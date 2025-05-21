@@ -10,3 +10,32 @@
   font-size: 1.8rem;
   font-weight: 500;
 }
+
+#modal, #promo_modal, #new_product__modal, #new_product__modal, #summaryPlan_modal, .planner_modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Стили для содержимого модального окна */
+#modalContent, #promo_modalContent, #new_product__modalContent, #summaryPlan__modalContent, #summaryPlan_modalContent, .planner_modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: start;
+}
+
+#ra_saveButton, #ra_closeModalButton, #promo_modalSaveButton, #promo_ModalCloseButton, #newProductCloseModalButton, #newProductSaveModalButton, #summaryPlan_saveModalButton, #summaryPlan_closeModalButton, #summaryPlan_saveModalButton, #summaryPlan_closeModalButton{
+    width: 100px;
+    height: 30px;
+    margin: 10px;
+}
+.modal_title, .promo_modal-title, .new_product__modal-title, .summaryPlan_modal-title {
+    margin-bottom: 20px;
+} 

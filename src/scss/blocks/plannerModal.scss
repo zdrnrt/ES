@@ -1,0 +1,82 @@
+.planner_modal-content {
+  width: 400px;
+  margin: 10% auto;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 5px;
+  align-items: center;
+
+  .planner_ModalRepetition-title {
+    grid-column: span 2;
+    font-size: 800;
+    place-items: center;
+    margin-left: 20%;
+  }
+
+  .planner_ModalRepetition_ending {
+    grid-column: span 2;
+    font-weight: 700;
+    margin: 5px 0 5px 0;
+  }
+
+  .planner_ModalRepetition_endingNever {
+    grid-column: span 2;
+  }
+
+  .ending_part {
+    margin-left: 85px;
+  }
+
+  #planner_ModalRepetition__times {
+    width: 40px;
+  }
+}
+
+.planner_intervalRepetition__header {
+  grid-column: span 2;
+  margin-left: 20%;
+
+  #planner_intervalRepetition__header {
+    margin: 4%;
+    // background-color: $focus-button;
+    border: 0.5px grey solid;
+    border-radius: 10px;
+    height: 30px;
+    padding: 2%;
+    width: 200px;
+  }
+}
+
+
+#planner_settingModalSave {
+  grid-column: span 2;
+  width: 200px;
+  height: 30px;
+  margin: 10px;
+  margin-left: 20%;
+
+  &:hover {
+    //  background-color: $hover-button;
+  }
+}
+
+.planner_intervalWrapper {
+  display: flex;
+  align-items: center;
+
+  .planner_intervalWrapperDay {
+    margin: 0 0 0 5px;
+  }
+}
+
+.planner_visionParagraph {
+  margin: 5px 0 5px 0;
+}
+
+//  #planner_buttonAddIframe{
+//     grid-column: span 2;
+//     width: 200px;
+//     height: 40px;
+//     margin-top: 15px;
+//     margin-left: 5%;
+//  }

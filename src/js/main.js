@@ -36,6 +36,11 @@ import './modules/clasteringCreate'
 import './modules/scenariosAnalysis'
 import './modules/scenariosSetting'
 
+import './modules/planner'
+import './modules/planner_formRepeat'
+import './modules/planner_saveModalRepetition'
+import './modules/planner_formRepeatSelect'
+
 //REG ASSORT********
 window.loadAndFilterData = function () {
   console.log("Функция работает!");
