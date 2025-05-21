@@ -7,7 +7,7 @@ window.scenariosAnalysisOpen = function () {
 	});
 };
 
-scenariosAnalysisOpen();
+// scenariosAnalysisOpen();
 
 function scenariosAnalysisInit() {
 	scenariosChartDraw();

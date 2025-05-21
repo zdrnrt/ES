@@ -37,7 +37,8 @@
     margin-left: 80%;
 
 }
-
+#potentialSalesDraiver,
+#draiverQuantityStoresDraiver,
 #potentialSales,
 #normingQuantityStores {
     color: $cl-purple;
@@ -47,6 +48,7 @@
         /* Светлый эффект сверху */
         -1px -1px 0 rgba(0, 0, 0, 0.5);
     /* Темный эффект снизу */
+    line-height: 1;
 }
 
 .asaid_chartNorming {
