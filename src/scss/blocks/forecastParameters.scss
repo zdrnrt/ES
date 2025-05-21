@@ -152,7 +152,9 @@
   /* Расстояние между текстом и иконкой */
   text-decoration: none;
   /* Убираем подчеркивание */
-  color: #007bff;
+  // color: #007bff;
+  color: rgba($cl-purple, 0.9);
+
   /* Цвет ссылки */
   margin-top: auto;
   /* Перемещаем ссылку вниз */
@@ -162,6 +164,7 @@
 
 .icon-link:hover {
   text-decoration: underline;
+  color: $cl-purple;
   /* Подчеркивание при наведении */
 }
 
